@@ -34,6 +34,97 @@
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
       "security": "auto",
       "alter_id": 64
+    },
+    {
+      "type": "vmess",
+      "tag": "hong kong_1",
+      "server": "183.236.51.23",
+      "server_port": 53002,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "vmess",
+      "tag": "hong kong_5",
+      "server": "183.236.51.23",
+      "server_port": 56601,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "vless",
+      "tag": "hong kong_46",
+      "server": "hk.camvan.xyz",
+      "server_port": 54145,
+      "uuid": "28e865e9-e92b-41e7-c75c-b2cdf8788622",
+      "tls":       {
+        "enabled": true,
+        "server_name": "hk.camvan.xyz",
+        "insecure": true
+      },
+      "transport":       {
+        "type": "ws",
+        "path": "/ray",
+        "headers":         {
+          "Host": "hk.camvan.xyz"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+   {
+      "type": "vless",
+      "tag": "singapore_47",
+      "server": "sgp.camvan.xyz",
+      "server_port": 54145,
+      "uuid": "63f2d00f-f421-49aa-f9af-974eaca779c0",
+      "tls":       {
+        "enabled": true,
+        "server_name": "sgp.camvan.xyz",
+        "insecure": true
+      },
+      "transport":       {
+        "type": "ws",
+        "path": "/ray",
+        "headers":         {
+          "Host": "sgp.camvan.xyz"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "japan_143",
+      "server": "54.248.142.136",
+      "server_port": 443,
+      "method": "aes-256-cfb",
+      "password": "amazonskr05"
+    },
+    {
+      "type": "vmess",
+      "tag": "united states_208",
+      "server": "183.236.51.23",
+      "server_port": 52112,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "japan_86",
+      "server": "120.232.81.50",
+      "server_port": 15084,
+      "method": "aes-256-cfb",
+      "password": "hGkQ6915tD"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "hong kong_85",
+      "server": "120.232.81.50",
+      "server_port": 16088,
+      "method": "aes-256-cfb",
+      "password": "hGkQ6915tD"
     }
   ]
 }
