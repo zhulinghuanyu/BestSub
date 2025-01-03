@@ -125,6 +125,14 @@
       "server_port": 16088,
       "method": "aes-256-cfb",
       "password": "hGkQ6915tD"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "united states_172",
+      "server": "ssus02.mypokeworld.link",
+      "server_port": 56014,
+      "method": "chacha20-ietf-poly1305",
+      "password": "78ed17d7-3fd8-462c-9f48-11627095c609"
     }
   ]
 }
