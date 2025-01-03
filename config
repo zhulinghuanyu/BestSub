@@ -133,6 +133,15 @@
       "server_port": 56014,
       "method": "chacha20-ietf-poly1305",
       "password": "78ed17d7-3fd8-462c-9f48-11627095c609"
+    },
+    {
+      "type": "hysteria2",
+      "tag": "singapore_163",
+      "server": "sg01.poke-mon.xyz",
+      "server_port": 20000,
+      "obfs":       {
+        "type": "salamander",
+        "password": "MmZiNTNjYmU5NjY2Zjk0YQ=="
     }
   ]
 }
