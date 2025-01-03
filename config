@@ -34,15 +34,6 @@
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
       "security": "auto",
       "alter_id": 64
-    },
-      "transport":       {
-        "type": "ws",
-        "path": "/?ed=2048",
-        "headers":         {
-          "Host": "edgood.889876.xyz"
-        }
-      },
-      "packet_encoding": "xudp"
     }
   ]
 }
