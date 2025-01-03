@@ -35,5 +35,14 @@
       "security": "auto",
       "alter_id": 64
     },
+      "transport":       {
+        "type": "ws",
+        "path": "/?ed=2048",
+        "headers":         {
+          "Host": "edgood.889876.xyz"
+        }
+      },
+      "packet_encoding": "xudp"
+    }
   ]
 }
