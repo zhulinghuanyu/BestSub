@@ -90,6 +90,6 @@
       "server_port": 16088,
       "method": "aes-256-cfb",
       "password": "hGkQ6915tD"
-    },
+    }
   ]
 }
