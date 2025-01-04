@@ -467,6 +467,110 @@
       "server_port": 990,
       "method": "chacha20-ietf-poly1305",
       "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy9663 § 0",
+      "server": "217.30.10.18",
+      "server_port": 9019,
+      "method": "aes-256-cfb",
+      "password": "GA9KzeEgvfxNrgmM"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy9045 § 1",
+      "server": "gdgs.tarioblink.me",
+      "server_port": 30003,
+      "method": "chacha20-ietf-poly1305",
+      "password": "42a6de31-223b-4baa-878d-15eebc885507"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy9043 § 2",
+      "server": "gdgs.tarioblink.me",
+      "server_port": 30002,
+      "method": "chacha20-ietf-poly1305",
+      "password": "42a6de31-223b-4baa-878d-15eebc885507"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy9040 § 3",
+      "server": "gdgs.tarioblink.me",
+      "server_port": 30001,
+      "method": "chacha20-ietf-poly1305",
+      "password": "42a6de31-223b-4baa-878d-15eebc885507"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy8505 § 4",
+      "server": "120.232.81.50",
+      "server_port": 15084,
+      "method": "aes-256-cfb",
+      "password": "hGkQ6915tD"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy8503 § 5",
+      "server": "120.232.81.50",
+      "server_port": 16088,
+      "method": "aes-256-cfb",
+      "password": "hGkQ6915tD"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy8501 § 6",
+      "server": "36.134.115.217",
+      "server_port": 6700,
+      "method": "rc4-md5",
+      "password": "uYhVA160ZoSg3AI5"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy8496 § 7",
+      "server": "45.87.175.199",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "1RWwXhwfAB5gAEozU4G2Pg"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy8435 § 8",
+      "server": "1.12.237.86",
+      "server_port": 6700,
+      "method": "rc4-md5",
+      "password": "uYhVA160ZoSg3AI5"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy61 § 9",
+      "server": "45.87.175.181",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "cvII85TrW6n0OGyfpHVS1u"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy59 § 10",
+      "server": "217.30.10.18",
+      "server_port": 9060,
+      "method": "aes-256-cfb",
+      "password": "ueLXVkvh4hckhErQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy13 § 11",
+      "server": "154.90.63.193",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "proxy102 § 12",
+      "server": "45.87.175.178",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "cvII85TrW6n0OGyfpHVS1u"
     }
   ]
 }
