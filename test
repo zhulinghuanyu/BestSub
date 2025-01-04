@@ -75,141 +75,12 @@
       "packet_encoding": "xudp"
     },
     {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_3574339605 § 7",
-      "server": "47.92.152.169",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_233140273 § 8",
-      "server": "47.116.173.76",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "CH😈SSRSUB_431941033 § 9",
-      "server": "47.116.173.76",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_1698251682 § 10",
-      "server": "47.116.173.76",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_233140273 § 11",
-      "server": "47.116.173.76",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "CH😈SSRSUB_1698251682 § 12",
-      "server": "47.116.173.76",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
       "type": "shadowsocks",
       "tag": "果宝特攻-免费线路-台湾-长期 § 13",
       "server": "gdgs.tarioblink.me",
       "server_port": 30002,
       "method": "chacha20-ietf-poly1305",
       "password": "42a6de31-223b-4baa-878d-15eebc885507"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "狮城01 § 14",
-      "server": "sa.shakalaka.xyz",
-      "server_port": 16789,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_3225342711 § 15",
-      "server": "112.132.215.12",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_3225342711 § 16",
-      "server": "112.132.215.12",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "CH😈SSRSUB_2444475651 § 17",
-      "server": "183.236.51.36",
-      "server_port": 59003,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_3087487628 § 18",
-      "server": "183.236.51.36",
-      "server_port": 59003,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_3087487628 § 19",
-      "server": "183.236.51.36",
-      "server_port": 59003,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
     },
     {
       "type": "shadowsocks",
@@ -220,131 +91,10 @@
       "password": "uYhVA160ZoSg3AI5"
     },
     {
-      "type": "vmess",
-      "tag": "日本01 § 21",
-      "server": "pj.shakalaka.xyz",
-      "server_port": 19901,
-      "uuid": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75",
-      "security": "auto",
-      "authenticated_length": true,
-      "packet_encoding": "xudp",
-      "transport":       {
-        "type": "ws",
-        "path": "/",
-        "headers":         {
-          "Host": "vm.sharesomefun.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "CH😈SSRSUB_543224176 § 22",
-      "server": "112.132.215.12",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_1873915727 § 23",
-      "server": "112.132.212.19",
-      "server_port": 50004,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "CH😈SSRSUB_2915411782 § 24",
-      "server": "112.132.215.12",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_4099562408 § 25",
-      "server": "112.132.212.19",
-      "server_port": 50004,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_1873915727 § 26",
-      "server": "112.132.212.19",
-      "server_port": 50004,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "韩国02 § 27",
-      "server": "rmh.shakalaka.xyz",
-      "server_port": 11789,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "马来西亚01 § 28",
-      "server": "c1.7a8b9c.xyz",
-      "server_port": 32352,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "马来西亚02 § 29",
-      "server": "c1.7a8b9c.xyz",
-      "server_port": 32353,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
       "type": "shadowsocks",
       "tag": "香港_Telegram@kxswa § 30",
       "server": "pj.shakalaka.xyz",
       "server_port": 11789,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "台湾01 § 31",
-      "server": "sa.shakalaka.xyz",
-      "server_port": 11885,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "台湾02 § 32",
-      "server": "gxw.shakalaka.xyz",
-      "server_port": 11886,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "狮城02 § 33",
-      "server": "gxw.shakalaka.xyz",
-      "server_port": 16789,
       "method": "aes-128-gcm",
       "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
     },
@@ -358,59 +108,11 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "美国01 § 35",
-      "server": "pj.shakalaka.xyz",
-      "server_port": 36404,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "英国01 § 36",
-      "server": "c2.7a8b9c.xyz",
-      "server_port": 10601,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "澳洲02 § 37",
-      "server": "c1.7a8b9c.xyz",
-      "server_port": 10861,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "澳洲01 § 38",
-      "server": "c1.7a8b9c.xyz",
-      "server_port": 10860,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "香港01 § 39",
-      "server": "sa.shakalaka.xyz",
-      "server_port": 13206,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "德国_Telegram@kxswa § 40",
       "server": "45.87.175.166",
       "server_port": 8080,
       "method": "chacha20-ietf-poly1305",
       "password": "1RWwXhwfAB5gAEozU4G2Pg"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "香港02 § 41",
-      "server": "gxw.shakalaka.xyz",
-      "server_port": 13207,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
     },
     {
       "type": "shadowsocks",
@@ -451,14 +153,6 @@
       "server_port": 8080,
       "method": "chacha20-ietf-poly1305",
       "password": "cvII85TrW6n0OGyfpHVS1u"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "英国02 § 47",
-      "server": "c2.7a8b9c.xyz",
-      "server_port": 10602,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
     },
     {
       "type": "shadowsocks",
