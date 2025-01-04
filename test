@@ -9,72 +9,6 @@
       "password": "54f4e2f4-f0e1-4a15-a0cf-3a3234ab58fb"
     },
     {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_3928156646 § 1",
-      "server": "47.92.152.169",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "TG😈SSRSUB_3290563095 § 2",
-      "server": "47.104.186.133",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_2578581128 § 3",
-      "server": "47.104.186.133",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "TG😈SSRSUB_3290563095 § 4",
-      "server": "47.104.186.133",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_2578581128 § 5",
-      "server": "47.104.186.133",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "Other😈SSRSUB_3928156646 § 6",
-      "server": "47.92.152.169",
-      "server_port": 50002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "authenticated_length": true,
-      "packet_encoding": "xudp"
-    },
-    {
       "type": "shadowsocks",
       "tag": "果宝特攻-免费线路-台湾-长期 § 13",
       "server": "gdgs.tarioblink.me",
@@ -108,14 +42,6 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "德国_Telegram@kxswa § 40",
-      "server": "45.87.175.166",
-      "server_port": 8080,
-      "method": "chacha20-ietf-poly1305",
-      "password": "1RWwXhwfAB5gAEozU4G2Pg"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "果宝特攻-免费节点-美国02 § 42",
       "server": "gdgs.tarioblink.me",
       "server_port": 30003,
@@ -129,30 +55,6 @@
       "server_port": 6700,
       "method": "rc4-md5",
       "password": "uYhVA160ZoSg3AI5"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "德国_Telegram@kxswa § 44",
-      "server": "45.87.175.178",
-      "server_port": 8080,
-      "method": "chacha20-ietf-poly1305",
-      "password": "4a2rfixophdjffa8KVA4Aa"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "德国_Telegram@kxswa § 45",
-      "server": "45.87.175.178",
-      "server_port": 8080,
-      "method": "chacha20-ietf-poly1305",
-      "password": "cvII85TrW6n0OGyfpHVS1u"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "德国_Telegram@kxswa § 46",
-      "server": "beesyar.org",
-      "server_port": 8080,
-      "method": "chacha20-ietf-poly1305",
-      "password": "cvII85TrW6n0OGyfpHVS1u"
     },
     {
       "type": "shadowsocks",
