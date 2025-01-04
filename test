@@ -2,14 +2,6 @@
   "outbounds":   [
     {
       "type": "shadowsocks",
-      "tag": "香港_Telegram@kxswa § 0",
-      "server": "183.232.229.165",
-      "server_port": 11001,
-      "method": "chacha20-ietf-poly1305",
-      "password": "54f4e2f4-f0e1-4a15-a0cf-3a3234ab58fb"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "果宝特攻-免费线路-台湾-长期 § 13",
       "server": "gdgs.tarioblink.me",
       "server_port": 30002,
@@ -23,14 +15,6 @@
       "server_port": 6700,
       "method": "rc4-md5",
       "password": "uYhVA160ZoSg3AI5"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "香港_Telegram@kxswa § 30",
-      "server": "pj.shakalaka.xyz",
-      "server_port": 11789,
-      "method": "aes-128-gcm",
-      "password": "a3c29dd3-d366-4fc2-9efa-ec0c81519b75"
     },
     {
       "type": "shadowsocks",
@@ -55,14 +39,6 @@
       "server_port": 6700,
       "method": "rc4-md5",
       "password": "uYhVA160ZoSg3AI5"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "香港_Telegram@kxswa § 48",
-      "server": "154.90.63.193",
-      "server_port": 990,
-      "method": "chacha20-ietf-poly1305",
-      "password": "f8f7aCzcPKbsF8p3"
     },
     {
       "type": "shadowsocks",
