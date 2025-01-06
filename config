@@ -92,6 +92,18 @@
       "password": "42a6de31-223b-4baa-878d-15eebc885507"
     },
     {
+      "type": "trojan",
+      "tag": "台湾3",
+      "server": "gy.58n.net",
+      "server_port": 33323,
+      "password": "fbe40e4a-501d-3d77-8297-7bdffcd0df8e",
+      "tls":       {
+        "enabled": true,
+        "server_name": "gy.58n.net",
+        "insecure": true
+      }
+    },
+    {
       "type": "shadowsocks",
       "tag": "新加坡1",
       "server": "gdgs.tarioblink.me",
