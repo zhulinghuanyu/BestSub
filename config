@@ -132,15 +132,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "PL_1",
-      "server": "217.30.10.18",
-      "server_port": 9019,
-      "method": "aes-256-cfb",
-      "password": "GA9KzeEgvfxNrgmM"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "IN_1",
+      "tag": "印度1",
       "server": "142.93.209.240",
       "server_port": 8080,
       "method": "rc4-md5",
@@ -148,7 +140,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "IN_2",
+      "tag": "印度2",
       "server": "159.89.160.243",
       "server_port": 8080,
       "method": "rc4-md5",
