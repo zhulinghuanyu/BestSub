@@ -34,14 +34,6 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "proxy9043 § 2",
-      "server": "gdgs.tarioblink.me",
-      "server_port": 30002,
-      "method": "chacha20-ietf-poly1305",
-      "password": "42a6de31-223b-4baa-878d-15eebc885507"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "proxy9040 § 3",
       "server": "gdgs.tarioblink.me",
       "server_port": 30001,
