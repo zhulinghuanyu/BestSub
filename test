@@ -17,24 +17,6 @@
       "password": "hGkQ6915tD"
     },
     {
-      "type": "vless",
-      "tag": "sg_14",
-      "server": "newsg--ceg5.555199.xyz",
-      "server_port": 443,
-      "uuid": "133f3024-1c9b-4568-b5b3-ebc8b26166e5",
-      "flow": "xtls-rprx-vision",
-      "tls":       {
-        "enabled": true,
-        "server_name": "ssl.xn--94q57lcvpw50b.com",
-        "insecure": true,
-        "utls":         {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "packet_encoding": "xudp"
-    },
-    {
       "type": "shadowsocks",
       "tag": "us_16",
       "server": "ssus02.mypokeworld.link",
@@ -260,72 +242,6 @@
     },
     {
       "type": "vmess",
-      "tag": "us_45",
-      "server": "38.33.47.92",
-      "server_port": 38002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.61974602.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/1728552419579",
-        "headers":         {
-          "Host": "www.61974602.xyz"
-        }
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_46",
-      "server": "192.74.240.227",
-      "server_port": 38003,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.93326012.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/1728984487568"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_47",
-      "server": "120.232.153.27",
-      "server_port": 58831,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64
-    },
-    {
-      "type": "vmess",
-      "tag": "us_48",
-      "server": "38.28.151.18",
-      "server_port": 37007,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.33756710.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/191129190634"
-      }
-    },
-    {
-      "type": "vmess",
       "tag": "us_49",
       "server": "142.4.108.156",
       "server_port": 38007,
@@ -344,24 +260,6 @@
     },
     {
       "type": "vmess",
-      "tag": "us_51",
-      "server": "38.33.0.248",
-      "server_port": 38001,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.46039636.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/262233120835"
-      }
-    },
-    {
-      "type": "vmess",
       "tag": "us_55",
       "server": "38.33.46.87",
       "server_port": 37000,
@@ -376,26 +274,6 @@
       "transport":       {
         "type": "ws",
         "path": "/path/282720161724"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_60",
-      "server": "www.tifafaya.top",
-      "server_port": 21586,
-      "uuid": "c7c21f96-8356-49a1-835f-f3ef4a274514",
-      "security": "auto",
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.tifafaya.top",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/yyopvws",
-        "headers":         {
-          "Host": "www.tifafaya.top"
-        }
       }
     },
     {
