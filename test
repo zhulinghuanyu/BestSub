@@ -168,18 +168,6 @@
       "alter_id": 64
     },
     {
-      "type": "trojan",
-      "tag": "tw_43",
-      "server": "gy.58n.net",
-      "server_port": 33323,
-      "password": "fbe40e4a-501d-3d77-8297-7bdffcd0df8e",
-      "tls":       {
-        "enabled": true,
-        "server_name": "gy.58n.net",
-        "insecure": true
-      }
-    },
-    {
       "type": "vmess",
       "tag": "us_49",
       "server": "142.4.108.156",
