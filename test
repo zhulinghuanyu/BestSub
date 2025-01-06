@@ -42,14 +42,6 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "proxy8505 § 4",
-      "server": "120.232.81.50",
-      "server_port": 15084,
-      "method": "aes-256-cfb",
-      "password": "hGkQ6915tD"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "proxy8503 § 5",
       "server": "120.232.81.50",
       "server_port": 16088,
