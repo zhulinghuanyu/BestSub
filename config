@@ -73,26 +73,6 @@
       },
       "packet_encoding": "xudp"
     },
-   {
-      "type": "vless",
-      "tag": "singapore_47",
-      "server": "sgp.camvan.xyz",
-      "server_port": 54145,
-      "uuid": "63f2d00f-f421-49aa-f9af-974eaca779c0",
-      "tls":       {
-        "enabled": true,
-        "server_name": "sgp.camvan.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/ray",
-        "headers":         {
-          "Host": "sgp.camvan.xyz"
-        }
-      },
-      "packet_encoding": "xudp"
-    },
     {
       "type": "shadowsocks",
       "tag": "japan_143",
