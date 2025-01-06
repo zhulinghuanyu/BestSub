@@ -2,14 +2,6 @@
   "outbounds":   [
     {
       "type": "shadowsocks",
-      "tag": "果宝特攻-免费线路-台湾-长期 § 13",
-      "server": "gdgs.tarioblink.me",
-      "server_port": 30002,
-      "method": "chacha20-ietf-poly1305",
-      "password": "42a6de31-223b-4baa-878d-15eebc885507"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "CH😈SSRSUB_268595513 § 20",
       "server": "1.12.237.86",
       "server_port": 6700,
