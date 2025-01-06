@@ -1,91 +1,6 @@
 {
   "outbounds":   [
     {
-      "type": "vmess",
-      "tag": "hk_1",
-      "server": "120.232.153.27",
-      "server_port": 58002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64
-    },
-    {
-      "type": "shadowsocksr",
-      "tag": "jp_2",
-      "server": "95b1cd85a0968ff2.cdn.jiashule.com",
-      "server_port": 40201,
-      "method": "rc4-md5",
-      "password": "ENZ52K",
-      "obfs": "plain",
-      "obfs_param": "eb0d374649.6602b8463464108506.microsoft.com",
-      "protocol": "auth_aes128_md5",
-      "protocol_param": "74649:7upNdh"
-    },
-    {
-      "type": "shadowsocksr",
-      "tag": "hk_3",
-      "server": "95b1cd85a0968ff2.cdn.jiashule.com",
-      "server_port": 40213,
-      "method": "rc4-md5",
-      "password": "ENZ52K",
-      "obfs": "plain",
-      "obfs_param": "eb0d374649.6602b8463464108506.microsoft.com",
-      "protocol": "auth_aes128_md5",
-      "protocol_param": "74649:7upNdh"
-    },
-    {
-      "type": "vless",
-      "tag": "hk_4",
-      "server": "hk.camvan.xyz",
-      "server_port": 54145,
-      "uuid": "28e865e9-e92b-41e7-c75c-b2cdf8788622",
-      "tls":       {
-        "enabled": true,
-        "server_name": "hk.camvan.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/ray",
-        "headers":         {
-          "Host": "hk.camvan.xyz"
-        }
-      },
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vless",
-      "tag": "sg_5",
-      "server": "sgp.camvan.xyz",
-      "server_port": 54145,
-      "uuid": "63f2d00f-f421-49aa-f9af-974eaca779c0",
-      "tls":       {
-        "enabled": true,
-        "server_name": "sgp.camvan.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/ray",
-        "headers":         {
-          "Host": "sgp.camvan.xyz"
-        }
-      },
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "hysteria2",
-      "tag": "jp_6",
-      "server": "43.206.215.239",
-      "server_port": 3204,
-      "password": "1ZUTrnp1duzWhhjWkPJgJQuBtVo",
-      "tls":       {
-        "enabled": true,
-        "server_name": "bing.com",
-        "insecure": true
-      }
-    },
-    {
       "type": "shadowsocks",
       "tag": "hk_7",
       "server": "120.232.81.50",
@@ -100,18 +15,6 @@
       "server_port": 15084,
       "method": "aes-256-cfb",
       "password": "hGkQ6915tD"
-    },
-    {
-      "type": "hysteria2",
-      "tag": "hk_9",
-      "server": "hk2.ddns-link-b5.uk",
-      "server_port": 3012,
-      "password": "178D9539-C489-4DA7-B9AC-AFB38CD4351B",
-      "tls":       {
-        "enabled": true,
-        "server_name": "hk2.ddns-link-b5.uk",
-        "insecure": true
-      }
     },
     {
       "type": "hysteria2",
@@ -631,24 +534,6 @@
       "transport":       {
         "type": "ws",
         "path": "/path/020925172021"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_53",
-      "server": "192.74.250.203",
-      "server_port": 38002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.63575583.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/242727302820"
       }
     },
     {
