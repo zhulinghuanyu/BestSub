@@ -26,14 +26,6 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "proxy8501 § 6",
-      "server": "36.134.115.217",
-      "server_port": 6700,
-      "method": "rc4-md5",
-      "password": "uYhVA160ZoSg3AI5"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "proxy8435 § 8",
       "server": "1.12.237.86",
       "server_port": 6700,
