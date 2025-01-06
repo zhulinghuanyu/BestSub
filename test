@@ -2,14 +2,6 @@
   "outbounds":   [
     {
       "type": "shadowsocks",
-      "tag": "proxy9663 § 0",
-      "server": "217.30.10.18",
-      "server_port": 9019,
-      "method": "aes-256-cfb",
-      "password": "GA9KzeEgvfxNrgmM"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "proxy9045 § 1",
       "server": "gdgs.tarioblink.me",
       "server_port": 30003,
