@@ -25,27 +25,6 @@
       "password": "78ed17d7-3fd8-462c-9f48-11627095c609"
     },
     {
-      "type": "hysteria2",
-      "tag": "tw_19",
-      "server": "tw3.ddns-link-b5.uk",
-      "server_port": 5523,
-      "password": "178D9539-C489-4DA7-B9AC-AFB38CD4351B",
-      "tls":       {
-        "enabled": true,
-        "server_name": "tw3.ddns-link-b5.uk",
-        "insecure": true
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "hk_25",
-      "server": "183.236.51.23",
-      "server_port": 51704,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64
-    },
-    {
       "type": "vmess",
       "tag": "hk_26",
       "server": "183.236.51.23",
@@ -172,26 +151,6 @@
       }
     },
     {
-      "type": "shadowsocksr",
-      "tag": "de_38",
-      "server": "95b1cd85a0968ff2.cdn.jiashule.com",
-      "server_port": 40223,
-      "method": "rc4-md5",
-      "password": "ENZ52K",
-      "obfs": "plain",
-      "obfs_param": "eb0d374649.6602b8463464108506.microsoft.com",
-      "protocol": "auth_aes128_md5",
-      "protocol_param": "74649:7upNdh"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "jp_39",
-      "server": "43.207.163.206",
-      "server_port": 443,
-      "method": "aes-256-cfb",
-      "password": "amazonskr05"
-    },
-    {
       "type": "vmess",
       "tag": "kr_40",
       "server": "chuncheon03.zgjok.com",
@@ -231,14 +190,6 @@
         "server_name": "gy.58n.net",
         "insecure": true
       }
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "tw_44",
-      "server": "gzyd5-1.piaomiaoxu.net",
-      "server_port": 28995,
-      "method": "aes-256-gcm",
-      "password": "79b487cf-9459-4c89-9038-809c6ee9e9d9"
     },
     {
       "type": "vmess",
@@ -300,14 +251,6 @@
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
       "security": "auto",
       "alter_id": 64
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "jp_84",
-      "server": "54.248.142.136",
-      "server_port": 443,
-      "method": "aes-256-cfb",
-      "password": "amazonskr05"
     },
     {
       "type": "hysteria2",
