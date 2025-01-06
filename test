@@ -10,14 +10,6 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "果宝特攻-免费节点-美国02 § 42",
-      "server": "gdgs.tarioblink.me",
-      "server_port": 30003,
-      "method": "chacha20-ietf-poly1305",
-      "password": "42a6de31-223b-4baa-878d-15eebc885507"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "CH😈SSRSUB_2449787177 § 43",
       "server": "36.134.115.217",
       "server_port": 6700,
