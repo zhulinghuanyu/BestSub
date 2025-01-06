@@ -125,6 +125,30 @@
       "server_port": 16088,
       "method": "aes-256-cfb",
       "password": "hGkQ6915tD"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "PL2 § 0",
+      "server": "217.30.10.18",
+      "server_port": 9019,
+      "method": "aes-256-cfb",
+      "password": "GA9KzeEgvfxNrgmM"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "IN2 § 1",
+      "server": "142.93.209.240",
+      "server_port": 8080,
+      "method": "rc4-md5",
+      "password": "14fFPrbezE3HDZzsMOr6"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "IN3 § 2",
+      "server": "159.89.160.243",
+      "server_port": 8080,
+      "method": "rc4-md5",
+      "password": "14fFPrbezE3HDZzsMOr6"
     }
   ]
 }
