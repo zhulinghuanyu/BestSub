@@ -2,22 +2,6 @@
   "outbounds":   [
     {
       "type": "shadowsocks",
-      "tag": "CH😈SSRSUB_268595513 § 20",
-      "server": "1.12.237.86",
-      "server_port": 6700,
-      "method": "rc4-md5",
-      "password": "uYhVA160ZoSg3AI5"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "CH😈SSRSUB_2449787177 § 43",
-      "server": "36.134.115.217",
-      "server_port": 6700,
-      "method": "rc4-md5",
-      "password": "uYhVA160ZoSg3AI5"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "proxy9663 § 0",
       "server": "217.30.10.18",
       "server_port": 9019,
@@ -50,27 +34,11 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "proxy8496 § 7",
-      "server": "45.87.175.199",
-      "server_port": 8080,
-      "method": "chacha20-ietf-poly1305",
-      "password": "1RWwXhwfAB5gAEozU4G2Pg"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "proxy8435 § 8",
       "server": "1.12.237.86",
       "server_port": 6700,
       "method": "rc4-md5",
       "password": "uYhVA160ZoSg3AI5"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "proxy59 § 10",
-      "server": "217.30.10.18",
-      "server_port": 9060,
-      "method": "aes-256-cfb",
-      "password": "ueLXVkvh4hckhErQ"
     }
   ]
 }
