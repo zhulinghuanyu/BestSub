@@ -73,6 +73,14 @@
     },
     {
       "type": "shadowsocks",
+      "tag": "剩余流量：572.36+GB § 34",
+      "server": "gdgs.tarioblink.me",
+      "server_port": 30001,
+      "method": "chacha20-ietf-poly1305",
+      "password": "42a6de31-223b-4baa-878d-15eebc885507"
+    },
+    {
+      "type": "shadowsocks",
       "tag": "japan_86",
       "server": "120.232.81.50",
       "server_port": 15084,
