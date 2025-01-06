@@ -2,7 +2,7 @@
   "outbounds":   [
     {
       "type": "vmess",
-      "tag": "hong kong_1",
+      "tag": "HK_1",
       "server": "183.236.51.23",
       "server_port": 53002,
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
@@ -11,7 +11,7 @@
     },
     {
       "type": "vmess",
-      "tag": "hong kong_5",
+      "tag": "HK_2",
       "server": "183.236.51.23",
       "server_port": 56601,
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
@@ -20,7 +20,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "hong kong_33",
+      "tag": "HK_3",
       "server": "cba83dae-2803-4e70-b504-1c3d2929eafb-hk-a.cdn.boats",
       "server_port": 30001,
       "method": "aes-128-gcm",
@@ -28,7 +28,7 @@
     },
     {
       "type": "vless",
-      "tag": "hong kong_46",
+      "tag": "HK_4",
       "server": "hk.camvan.xyz",
       "server_port": 54145,
       "uuid": "28e865e9-e92b-41e7-c75c-b2cdf8788622",
@@ -48,7 +48,7 @@
     },
     {
       "type": "vmess",
-      "tag": "hong kong_64",
+      "tag": "HK_5",
       "server": "183.236.51.23",
       "server_port": 53002,
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
@@ -57,7 +57,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "hong kong_85",
+      "tag": "HK_6",
       "server": "120.232.81.50",
       "server_port": 16088,
       "method": "aes-256-cfb",
@@ -65,7 +65,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "果宝特攻-免费线路-台湾-长期 § 13",
+      "tag": "TW_1",
       "server": "gdgs.tarioblink.me",
       "server_port": 30002,
       "method": "chacha20-ietf-poly1305",
@@ -89,7 +89,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "japan_86",
+      "tag": "JP_1",
       "server": "120.232.81.50",
       "server_port": 15084,
       "method": "aes-256-cfb",
@@ -97,7 +97,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "japan_143",
+      "tag": "JP_2",
       "server": "54.248.142.136",
       "server_port": 443,
       "method": "aes-256-cfb",
@@ -105,7 +105,7 @@
     },
     {
       "type": "vless",
-      "tag": "united states_30",
+      "tag": "US_1",
       "server": "sb.225514.xyz",
       "server_port": 16864,
       "uuid": "fbb6afdf-3643-4604-b733-90bbd5a938b5",
@@ -123,7 +123,7 @@
     },
     {
       "type": "vmess",
-      "tag": "united states_208",
+      "tag": "US_2",
       "server": "183.236.51.23",
       "server_port": 52112,
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
@@ -132,7 +132,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "PL2 § 0",
+      "tag": "PL_1",
       "server": "217.30.10.18",
       "server_port": 9019,
       "method": "aes-256-cfb",
@@ -140,7 +140,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "IN2 § 1",
+      "tag": "IN_1",
       "server": "142.93.209.240",
       "server_port": 8080,
       "method": "rc4-md5",
@@ -148,7 +148,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "IN3 § 2",
+      "tag": "IN_2",
       "server": "159.89.160.243",
       "server_port": 8080,
       "method": "rc4-md5",
