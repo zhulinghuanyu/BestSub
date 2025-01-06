@@ -82,35 +82,11 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "proxy61 § 9",
-      "server": "45.87.175.181",
-      "server_port": 8080,
-      "method": "chacha20-ietf-poly1305",
-      "password": "cvII85TrW6n0OGyfpHVS1u"
-    },
-    {
-      "type": "shadowsocks",
       "tag": "proxy59 § 10",
       "server": "217.30.10.18",
       "server_port": 9060,
       "method": "aes-256-cfb",
       "password": "ueLXVkvh4hckhErQ"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "proxy13 § 11",
-      "server": "154.90.63.193",
-      "server_port": 990,
-      "method": "chacha20-ietf-poly1305",
-      "password": "f8f7aCzcPKbsF8p3"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "proxy102 § 12",
-      "server": "45.87.175.178",
-      "server_port": 8080,
-      "method": "chacha20-ietf-poly1305",
-      "password": "cvII85TrW6n0OGyfpHVS1u"
     }
   ]
 }
