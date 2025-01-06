@@ -1,6 +1,41 @@
 {
   "outbounds":   [
     {
+      "type": "vless",
+      "tag": "united states_30",
+      "server": "sb.225514.xyz",
+      "server_port": 16864,
+      "uuid": "fbb6afdf-3643-4604-b733-90bbd5a938b5",
+      "flow": "xtls-rprx-vision",
+      "tls":       {
+        "enabled": true,
+        "server_name": "sb.225514.xyz",
+        "insecure": true,
+        "utls":         {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "hong kong_33",
+      "server": "cba83dae-2803-4e70-b504-1c3d2929eafb-hk-a.cdn.boats",
+      "server_port": 30001,
+      "method": "aes-128-gcm",
+      "password": "6f59019f-dae0-461f-a9b6-13f9ab858518"
+    },
+    {
+      "type": "vmess",
+      "tag": "hong kong_64",
+      "server": "183.236.51.23",
+      "server_port": 53002,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
       "type": "vmess",
       "tag": "hong kong_1",
       "server": "183.236.51.23",
@@ -17,14 +52,6 @@
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
       "security": "auto",
       "alter_id": 64
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "hong kong_33",
-      "server": "cba83dae-2803-4e70-b504-1c3d2929eafb-hk-a.cdn.boats",
-      "server_port": 30001,
-      "method": "aes-128-gcm",
-      "password": "6f59019f-dae0-461f-a9b6-13f9ab858518"
     },
     {
       "type": "vless",
@@ -47,21 +74,21 @@
       "packet_encoding": "xudp"
     },
     {
+      "type": "shadowsocks",
+      "tag": "japan_143",
+      "server": "54.248.142.136",
+      "server_port": 443,
+      "method": "aes-256-cfb",
+      "password": "amazonskr05"
+    },
+    {
       "type": "vmess",
-      "tag": "hong kong_64",
+      "tag": "united states_208",
       "server": "183.236.51.23",
-      "server_port": 53002,
+      "server_port": 52112,
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
       "security": "auto",
       "alter_id": 64
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "hong kong_85",
-      "server": "120.232.81.50",
-      "server_port": 16088,
-      "method": "aes-256-cfb",
-      "password": "hGkQ6915tD"
     },
     {
       "type": "shadowsocks",
@@ -73,38 +100,19 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "japan_143",
-      "server": "54.248.142.136",
-      "server_port": 443,
+      "tag": "hong kong_85",
+      "server": "120.232.81.50",
+      "server_port": 16088,
       "method": "aes-256-cfb",
-      "password": "amazonskr05"
+      "password": "hGkQ6915tD"
     },
     {
-      "type": "vless",
-      "tag": "united states_30",
-      "server": "sb.225514.xyz",
-      "server_port": 16864,
-      "uuid": "fbb6afdf-3643-4604-b733-90bbd5a938b5",
-      "flow": "xtls-rprx-vision",
-      "tls":       {
-        "enabled": true,
-        "server_name": "sb.225514.xyz",
-        "insecure": true,
-        "utls":         {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vmess",
-      "tag": "united states_208",
-      "server": "183.236.51.23",
-      "server_port": 52112,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64
+      "type": "shadowsocks",
+      "tag": "PL2 § 0",
+      "server": "217.30.10.18",
+      "server_port": 9019,
+      "method": "aes-256-cfb",
+      "password": "GA9KzeEgvfxNrgmM"
     },
     {
       "type": "shadowsocks",
@@ -121,14 +129,6 @@
       "server_port": 8080,
       "method": "rc4-md5",
       "password": "14fFPrbezE3HDZzsMOr6"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "PL2 § 0",
-      "server": "217.30.10.18",
-      "server_port": 9019,
-      "method": "aes-256-cfb",
-      "password": "GA9KzeEgvfxNrgmM"
     }
   ]
 }
