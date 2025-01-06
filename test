@@ -141,52 +141,6 @@
       "packet_encoding": "xudp"
     },
     {
-      "type": "hysteria2",
-      "tag": "gb_21",
-      "server": "5.39.254.34",
-      "server_port": 5277,
-      "up_mbps": 50,
-      "down_mbps": 50,
-      "obfs":       {
-        "type": "salamander",
-        "password": "ZTg1ZWVjNjAxZmRlNGI5MA=="
-      },
-      "password": "7e62d3d9-d712-4069-9932-5957f52aa348",
-      "tls":       {
-        "enabled": true,
-        "server_name": "5.39.254.34",
-        "insecure": true
-      }
-    },
-    {
-      "type": "hysteria2",
-      "tag": "jp_23",
-      "server": "23.26.34.209",
-      "server_port": 8080,
-      "up_mbps": 50,
-      "down_mbps": 50,
-      "password": "57480a08-57ce-4bb6-a8fb-323367707770",
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
-      }
-    },
-    {
-      "type": "hysteria2",
-      "tag": "hk_24",
-      "server": "141.11.217.113",
-      "server_port": 8080,
-      "up_mbps": 50,
-      "down_mbps": 50,
-      "password": "0edd8ef9-d030-4ae7-a676-ba034aeb8046",
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
-      }
-    },
-    {
       "type": "vmess",
       "tag": "hk_25",
       "server": "183.236.51.23",
@@ -371,14 +325,6 @@
       "alter_id": 64
     },
     {
-      "type": "shadowsocks",
-      "tag": "tw_42",
-      "server": "tw1-vds7.anyhk.co",
-      "server_port": 30443,
-      "method": "chacha20-ietf-poly1305",
-      "password": "5b26dd99-219a-414b-9e42-4faad754345c"
-    },
-    {
       "type": "trojan",
       "tag": "tw_43",
       "server": "gy.58n.net",
@@ -484,24 +430,6 @@
     },
     {
       "type": "vmess",
-      "tag": "us_50",
-      "server": "192.74.247.247",
-      "server_port": 38001,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.45174198.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/1724059321951"
-      }
-    },
-    {
-      "type": "vmess",
       "tag": "us_51",
       "server": "38.33.0.248",
       "server_port": 38001,
@@ -516,42 +444,6 @@
       "transport":       {
         "type": "ws",
         "path": "/path/262233120835"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_52",
-      "server": "142.4.126.115",
-      "server_port": 37004,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.62735446.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/020925172021"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_54",
-      "server": "38.33.24.88",
-      "server_port": 37001,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.89655249.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/151331260515"
       }
     },
     {
@@ -574,69 +466,6 @@
     },
     {
       "type": "vmess",
-      "tag": "us_56",
-      "server": "142.4.109.243",
-      "server_port": 38003,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.25117717.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/211932212217"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_57",
-      "server": "38.11.73.115",
-      "server_port": 37001,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.88186618.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/263235320430"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_58",
-      "server": "192.74.241.185",
-      "server_port": 38003,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.88674577.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/162431013335"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_59",
-      "server": "183.236.51.23",
-      "server_port": 40434,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "none",
-      "alter_id": 64
-    },
-    {
-      "type": "vmess",
       "tag": "us_60",
       "server": "www.tifafaya.top",
       "server_port": 21586,
@@ -654,160 +483,6 @@
           "Host": "www.tifafaya.top"
         }
       }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_61",
-      "server": "142.4.118.233",
-      "server_port": 38003,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "www.30471929.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/281624160735"
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_62",
-      "server": "oci.cbu.net",
-      "server_port": 443,
-      "uuid": "87ae2ebc-3e45-33d9-8ed3-61a337d88888",
-      "security": "auto",
-      "tls":       {
-        "enabled": true,
-        "server_name": "oci.cbu.net",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/ccs",
-        "headers":         {
-          "Host": "oci.cbu.net"
-        }
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "us_63",
-      "server": "137.175.15.219",
-      "server_port": 36000,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64,
-      "tls":       {
-        "enabled": true,
-        "server_name": "137.175.15.219",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/path/1706090410400"
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "sg_64",
-      "server": "103.136.68.253",
-      "server_port": 3732,
-      "uuid": "c9e76d3e-ec9d-425a-9a35-83c8b4f20ef7",
-      "transport":       {
-        "type": "ws",
-        "path": "/"
-      },
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vless",
-      "tag": "hk_65",
-      "server": "212.192.13.179",
-      "server_port": 4035,
-      "uuid": "81ee68be-c93b-4cba-a6cd-feddd7b1885b",
-      "transport":       {
-        "type": "ws",
-        "path": "/"
-      },
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vless",
-      "tag": "hk_66",
-      "server": "212.192.12.97",
-      "server_port": 6478,
-      "uuid": "e326a5ec-7a3e-40d6-ae7f-56ca3055ff8c",
-      "transport":       {
-        "type": "ws",
-        "path": "/"
-      },
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "gb_67",
-      "server": "213.108.22.109",
-      "server_port": 38753,
-      "method": "chacha20-ietf-poly1305",
-      "password": "6OAGLD+DOA6UcFp5Udf0r/UzyjwHV+yheNkoFDk6uL8="
-    },
-    {
-      "type": "vmess",
-      "tag": "hk_68",
-      "server": "yd2.ainivp.com",
-      "server_port": 33416,
-      "uuid": "9204afcd-023e-781f-1abc-c12efccd1344",
-      "security": "auto",
-      "tls":       {
-        "enabled": true,
-        "server_name": "yd2.ainivp.com",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/ray",
-        "headers":         {
-          "Host": "yd2.ainivp.com"
-        }
-      }
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "kr_69",
-      "server": "43.202.57.197",
-      "server_port": 443,
-      "method": "aes-256-cfb",
-      "password": "amazonskr05"
-    },
-    {
-      "type": "vmess",
-      "tag": "hk_70",
-      "server": "183.236.48.163",
-      "server_port": 40002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64
-    },
-    {
-      "type": "vmess",
-      "tag": "us_71",
-      "server": "183.240.253.26",
-      "server_port": 39041,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "kr_72",
-      "server": "43.203.249.198",
-      "server_port": 443,
-      "method": "aes-256-cfb",
-      "password": "amazonskr05"
     },
     {
       "type": "shadowsocks",
