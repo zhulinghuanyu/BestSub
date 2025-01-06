@@ -129,6 +129,6 @@
       "server_port": 9019,
       "method": "aes-256-cfb",
       "password": "GA9KzeEgvfxNrgmM"
-    },
+    }
   ]
 }
