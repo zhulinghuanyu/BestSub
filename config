@@ -73,9 +73,17 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "剩余流量：572.36+GB § 34",
+      "tag": "SG_1",
       "server": "gdgs.tarioblink.me",
       "server_port": 30001,
+      "method": "chacha20-ietf-poly1305",
+      "password": "42a6de31-223b-4baa-878d-15eebc885507"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "SG_2",
+      "server": "gdgs.tarioblink.me",
+      "server_port": 30003,
       "method": "chacha20-ietf-poly1305",
       "password": "42a6de31-223b-4baa-878d-15eebc885507"
     },
