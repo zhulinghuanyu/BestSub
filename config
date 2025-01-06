@@ -64,6 +64,18 @@
       "password": "hGkQ6915tD"
     },
     {
+      "type": "trojan",
+      "tag": "香港7",
+      "server": "zfa01.333210.xyz",
+      "server_port": 40383,
+      "password": "892e4ff3-f8bb-42ac-9bd5-e103f235fc78",
+      "tls":       {
+        "enabled": true,
+        "server_name": "400567.xyz",
+        "insecure": true
+      }
+    },
+    {
       "type": "shadowsocks",
       "tag": "台湾1",
       "server": "gdgs.tarioblink.me",
