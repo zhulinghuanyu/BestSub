@@ -17,63 +17,9 @@
       "password": "hGkQ6915tD"
     },
     {
-      "type": "hysteria2",
-      "tag": "hk_10",
-      "server": "hk3.ddns-link-b5.uk",
-      "server_port": 5898,
-      "password": "178D9539-C489-4DA7-B9AC-AFB38CD4351B",
-      "tls":       {
-        "enabled": true,
-        "server_name": "hk3.ddns-link-b5.uk",
-        "insecure": true
-      }
-    },
-    {
-      "type": "hysteria2",
-      "tag": "my_12",
-      "server": "43.216.11.230",
-      "server_port": 12999,
-      "password": "n4yhYK9buz558oanysHYmlGh3aY",
-      "tls":       {
-        "enabled": true,
-        "server_name": "bing.com",
-        "insecure": true
-      }
-    },
-    {
-      "type": "hysteria2",
-      "tag": "jp_13",
-      "server": "yun.qianchen.tk",
-      "server_port": 443,
-      "password": "sysadmin.sysadmin",
-      "tls":       {
-        "enabled": true,
-        "server_name": "yun.qianchen.tk",
-        "insecure": true
-      }
-    },
-    {
       "type": "vless",
       "tag": "sg_14",
       "server": "newsg--ceg5.555199.xyz",
-      "server_port": 443,
-      "uuid": "133f3024-1c9b-4568-b5b3-ebc8b26166e5",
-      "flow": "xtls-rprx-vision",
-      "tls":       {
-        "enabled": true,
-        "server_name": "ssl.xn--94q57lcvpw50b.com",
-        "insecure": true,
-        "utls":         {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "packet_encoding": "xudp"
-    },
-    {
-      "type": "vless",
-      "tag": "jp_15",
-      "server": "newjp-ceg5.555199.xyz",
       "server_port": 443,
       "uuid": "133f3024-1c9b-4568-b5b3-ebc8b26166e5",
       "flow": "xtls-rprx-vision",
@@ -98,26 +44,6 @@
     },
     {
       "type": "hysteria2",
-      "tag": "hk_17",
-      "server": "hk1.ddns-link-b5.uk",
-      "server_port": 1530,
-      "password": "178D9539-C489-4DA7-B9AC-AFB38CD4351B",
-      "tls":       {
-        "enabled": true,
-        "server_name": "hk1.ddns-link-b5.uk",
-        "insecure": true
-      }
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "jp_18",
-      "server": "38.47.104.61",
-      "server_port": 10086,
-      "method": "chacha20-ietf-poly1305",
-      "password": "Naito1001!"
-    },
-    {
-      "type": "hysteria2",
       "tag": "tw_19",
       "server": "tw3.ddns-link-b5.uk",
       "server_port": 5523,
@@ -127,18 +53,6 @@
         "server_name": "tw3.ddns-link-b5.uk",
         "insecure": true
       }
-    },
-    {
-      "type": "vless",
-      "tag": "us_20",
-      "server": "207.90.237.199",
-      "server_port": 80,
-      "uuid": "0f8f824a-d0a1-40f4-8285-de78892de48c",
-      "transport":       {
-        "type": "ws",
-        "path": "/"
-      },
-      "packet_encoding": "xudp"
     },
     {
       "type": "vmess",
