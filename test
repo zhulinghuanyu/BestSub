@@ -99,19 +99,6 @@
     },
     {
       "type": "vmess",
-      "tag": "tw_36",
-      "server": "zfa04.333210.xyz",
-      "server_port": 40380,
-      "uuid": "892e4ff3-f8bb-42ac-9bd5-e103f235fc78",
-      "security": "auto",
-      "tls":       {
-        "enabled": true,
-        "server_name": "400567.xyz",
-        "insecure": true
-      }
-    },
-    {
-      "type": "vmess",
       "tag": "ca_37",
       "server": "146.724064.xyz",
       "server_port": 443,
