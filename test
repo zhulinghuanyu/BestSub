@@ -211,18 +211,6 @@
         "server_name": "sg1.helloco.xyz",
         "insecure": true
       }
-    },
-    {
-      "type": "hysteria2",
-      "tag": "sg_103",
-      "server": "sg2.helloco.xyz",
-      "server_port": 30000,
-      "password": "065814bc-2065-4ebb-82d2-75fedff50489",
-      "tls":       {
-        "enabled": true,
-        "server_name": "sg2.helloco.xyz",
-        "insecure": true
-      }
     }
   ]
 }
