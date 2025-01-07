@@ -64,15 +64,6 @@
         "type": "ws",
         "path": "/path/282720161724"
       }
-    },
-    {
-      "type": "vmess",
-      "tag": "hk_79",
-      "server": "183.236.51.23",
-      "server_port": 51037,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64
     }
   ]
 }
