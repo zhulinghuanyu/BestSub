@@ -197,6 +197,14 @@
       "password": "hGkQ6915tD"
     },
     {
+      "type": "shadowsocks",
+      "tag": "日本4",
+      "server": "120.232.81.50",
+      "server_port": 15084,
+      "method": "aes-256-cfb",
+      "password": "hGkQ6915tD"
+    },
+    {
       "type": "vless",
       "tag": "美国1",
       "server": "sb.225514.xyz",
