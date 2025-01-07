@@ -199,18 +199,6 @@
       "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
       "security": "auto",
       "alter_id": 64
-    },
-    {
-      "type": "hysteria2",
-      "tag": "sg_102",
-      "server": "sg1.helloco.xyz",
-      "server_port": 30000,
-      "password": "065814bc-2065-4ebb-82d2-75fedff50489",
-      "tls":       {
-        "enabled": true,
-        "server_name": "sg1.helloco.xyz",
-        "insecure": true
-      }
     }
   ]
 }
