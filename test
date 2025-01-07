@@ -18,18 +18,6 @@
       "alter_id": 64
     },
     {
-      "type": "hysteria2",
-      "tag": "jp_29",
-      "server": "tk-006.xiaoxiaobujidao.xyz",
-      "server_port": 443,
-      "password": "45ce0dfa-fb29-3c65-b761-f585965f6302",
-      "tls":       {
-        "enabled": true,
-        "server_name": "tk-006.xiaoxiaobujidao.xyz",
-        "insecure": true
-      }
-    },
-    {
       "type": "trojan",
       "tag": "us_35",
       "server": "zfa05.333210.xyz",
