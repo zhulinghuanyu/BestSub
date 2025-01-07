@@ -104,6 +104,19 @@
       }
     },
     {
+      "type": "vmess",
+      "tag": "台湾4",
+      "server": "zfa04.333210.xyz",
+      "server_port": 40380,
+      "uuid": "892e4ff3-f8bb-42ac-9bd5-e103f235fc78",
+      "security": "auto",
+      "tls":       {
+        "enabled": true,
+        "server_name": "400567.xyz",
+        "insecure": true
+      }
+    },
+    {
       "type": "shadowsocks",
       "tag": "新加坡1",
       "server": "gdgs.tarioblink.me",
