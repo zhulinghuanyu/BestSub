@@ -1,14 +1,6 @@
 {
   "outbounds":   [
-    {
-      "type": "vmess",
-      "tag": "香港1",
-      "server": "183.236.51.23",
-      "server_port": 53002,
-      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
-      "security": "auto",
-      "alter_id": 64
-    },
+    {"type": "vmess","tag": "香港1","server": "183.236.51.23","server_port": 53002,"uuid": "418048af-a293-4b99-9b0c-98ca3580dd24","security": "auto","alter_id": 64},
     {
       "type": "vmess",
       "tag": "香港2",
