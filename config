@@ -173,6 +173,18 @@
       }
     },
     {
+      "type": "trojan",
+      "tag": "新加坡7",
+      "server": "zfa02.333210.xyz",
+      "server_port": 41381,
+      "password": "892e4ff3-f8bb-42ac-9bd5-e103f235fc78",
+      "tls":       {
+        "enabled": true,
+        "server_name": "400567.xyz",
+        "insecure": true
+      }
+    },
+    {
       "type": "shadowsocks",
       "tag": "日本1",
       "server": "120.232.81.50",
