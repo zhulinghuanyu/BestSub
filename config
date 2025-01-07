@@ -244,6 +244,18 @@
       "alter_id": 64
     },
     {
+      "type": "hysteria2",
+      "tag": "英国1",
+      "server": "uk-001.xiaoxiaobujidao.xyz",
+      "server_port": 443,
+      "password": "45ce0dfa-fb29-3c65-b761-f585965f6302",
+      "tls":       {
+        "enabled": true,
+        "server_name": "uk-001.xiaoxiaobujidao.xyz",
+        "insecure": true
+      }
+    },
+    {
       "type": "shadowsocks",
       "tag": "印度1",
       "server": "142.93.209.240",
