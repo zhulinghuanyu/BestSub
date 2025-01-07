@@ -17,14 +17,6 @@
       "password": "hGkQ6915tD"
     },
     {
-      "type": "shadowsocks",
-      "tag": "us_16",
-      "server": "ssus02.mypokeworld.link",
-      "server_port": 56014,
-      "method": "chacha20-ietf-poly1305",
-      "password": "78ed17d7-3fd8-462c-9f48-11627095c609"
-    },
-    {
       "type": "vmess",
       "tag": "hk_26",
       "server": "183.236.51.23",
@@ -135,26 +127,6 @@
         "path": "/cizrvws",
         "headers":         {
           "Host": "146.724064.xyz"
-        }
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "kr_40",
-      "server": "chuncheon03.zgjok.com",
-      "server_port": 443,
-      "uuid": "81d5cac4-d039-4874-9a20-c391f580012d",
-      "security": "auto",
-      "tls":       {
-        "enabled": true,
-        "server_name": "chuncheon03.zgjok.com",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/",
-        "headers":         {
-          "Host": "chuncheon03.zgjok.com"
         }
       }
     },
