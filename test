@@ -55,26 +55,6 @@
     },
     {
       "type": "vmess",
-      "tag": "ca_37",
-      "server": "146.724064.xyz",
-      "server_port": 443,
-      "uuid": "ab6c0c3d-bd17-4917-bf09-d21c9404f48f",
-      "security": "auto",
-      "tls":       {
-        "enabled": true,
-        "server_name": "146.724064.xyz",
-        "insecure": true
-      },
-      "transport":       {
-        "type": "ws",
-        "path": "/cizrvws",
-        "headers":         {
-          "Host": "146.724064.xyz"
-        }
-      }
-    },
-    {
-      "type": "vmess",
       "tag": "hk_41",
       "server": "183.236.51.23",
       "server_port": 56601,
