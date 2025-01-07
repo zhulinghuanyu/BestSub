@@ -31,18 +31,6 @@
     },
     {
       "type": "trojan",
-      "tag": "sg_32",
-      "server": "zfa02.333210.xyz",
-      "server_port": 41381,
-      "password": "892e4ff3-f8bb-42ac-9bd5-e103f235fc78",
-      "tls":       {
-        "enabled": true,
-        "server_name": "400567.xyz",
-        "insecure": true
-      }
-    },
-    {
-      "type": "trojan",
       "tag": "us_35",
       "server": "zfa05.333210.xyz",
       "server_port": 40384,
