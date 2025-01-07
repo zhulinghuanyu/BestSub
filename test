@@ -66,22 +66,6 @@
       }
     },
     {
-      "type": "shadowsocks",
-      "tag": "hk_73",
-      "server": "2.api-catssr.catcloud.host",
-      "server_port": 19682,
-      "method": "chacha20-ietf-poly1305",
-      "password": "2a167710-f1be-4201-ba87-b60136e0d8a6"
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "hk_74",
-      "server": "2.api-catssr.catcloud.host",
-      "server_port": 46653,
-      "method": "chacha20-ietf-poly1305",
-      "password": "2a167710-f1be-4201-ba87-b60136e0d8a6"
-    },
-    {
       "type": "vmess",
       "tag": "hk_79",
       "server": "183.236.51.23",
