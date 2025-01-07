@@ -286,6 +286,36 @@
       }
     },
     {
+      "type": "trojan",
+      "tag": "美国4",
+      "server": "zfa05.333210.xyz",
+      "server_port": 40384,
+      "password": "892e4ff3-f8bb-42ac-9bd5-e103f235fc78",
+      "tls":       {
+        "enabled": true,
+        "server_name": "400567.xyz",
+        "insecure": true
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "美国5",
+      "server": "142.4.108.156",
+      "server_port": 38007,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64,
+      "tls":       {
+        "enabled": true,
+        "server_name": "www.66827194.xyz",
+        "insecure": true
+      },
+      "transport":       {
+        "type": "ws",
+        "path": "/path/032122002418"
+      }
+    },
+    {
       "type": "vmess",
       "tag": "加拿大1",
       "server": "146.724064.xyz",
