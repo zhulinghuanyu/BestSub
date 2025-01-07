@@ -136,6 +136,18 @@
       "password": "42a6de31-223b-4baa-878d-15eebc885507"
     },
     {
+      "type": "hysteria2",
+      "tag": "新加坡5",
+      "server": "sg2.helloco.xyz",
+      "server_port": 30000,
+      "password": "065814bc-2065-4ebb-82d2-75fedff50489",
+      "tls":       {
+        "enabled": true,
+        "server_name": "sg2.helloco.xyz",
+        "insecure": true
+      }
+    },
+    {
       "type": "shadowsocks",
       "tag": "日本1",
       "server": "120.232.81.50",
