@@ -9,14 +9,6 @@
       "password": "hGkQ6915tD"
     },
     {
-      "type": "shadowsocks",
-      "tag": "jp_8",
-      "server": "120.232.81.50",
-      "server_port": 15084,
-      "method": "aes-256-cfb",
-      "password": "hGkQ6915tD"
-    },
-    {
       "type": "vmess",
       "tag": "hk_26",
       "server": "183.236.51.23",
