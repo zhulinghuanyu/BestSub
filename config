@@ -256,6 +256,26 @@
       "alter_id": 64
     },
     {
+      "type": "vmess",
+      "tag": "加拿大1",
+      "server": "146.724064.xyz",
+      "server_port": 443,
+      "uuid": "ab6c0c3d-bd17-4917-bf09-d21c9404f48f",
+      "security": "auto",
+      "tls":       {
+        "enabled": true,
+        "server_name": "146.724064.xyz",
+        "insecure": true
+      },
+      "transport":       {
+        "type": "ws",
+        "path": "/cizrvws",
+        "headers":         {
+          "Host": "146.724064.xyz"
+        }
+      }
+    },
+    {
       "type": "hysteria2",
       "tag": "英国1",
       "server": "uk-001.xiaoxiaobujidao.xyz",
