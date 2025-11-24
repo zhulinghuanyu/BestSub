@@ -1,0 +1,247 @@
+{
+ "outbounds": [
+  {
+   "type": "vmess",
+   "tag": "🇭🇰 HKG Akile",
+   "server": "default.hk.akile.ddns.ad.989567.xyz",
+   "server_port": 14523,
+   "uuid": "f3ada00f-74d6-43b0-bc7b-f3894c6fbf15",
+   "security": "auto",
+   "tls": {
+    "enabled": true,
+    "server_name": "default.hk.akile.ddns.ad.989567.xyz"
+   },
+   "transport": {
+    "type": "ws",
+    "path": "/login",
+    "headers": {
+     "Host": "default.hk.akile.ddns.ad.989567.xyz"
+    }
+   }
+  },
+  {
+   "type": "vmess",
+   "tag": "🇭🇰 HKG Akile WoPan",
+   "server": "default.hk.akile.ddns.ad.989567.xyz",
+   "server_port": 443,
+   "uuid": "6e51ce86-9394-4390-8e24-714f8ef5d53d",
+   "security": "auto",
+   "transport": {
+    "type": "ws",
+    "path": "/",
+    "headers": {
+     "Host": "tjtn.pan.wo.cn"
+    }
+   }
+  },
+  {
+   "type": "tuic",
+   "tag": "🇯🇵 JPN Alibaba Tuic",
+   "server": "47.74.7.160",
+   "server_port": 24505,
+   "uuid": "2dbad67b-0094-4374-82a2-7f09cd0af3dc",
+   "password": "2dbad67b-0094-4374-82a2-7f09cd0af3dc",
+   "congestion_control": "bbr",
+   "udp_relay_mode": "native",
+   "zero_rtt_handshake": true,
+   "tls": {
+    "enabled": true,
+    "server_name": "47.74.7.160",
+    "insecure": true,
+    "alpn": "h3"
+   }
+  },
+  {
+   "type": "hysteria2",
+   "tag": "🇯🇵 JPN Alibaba Hysteria2",
+   "server": "47.74.7.160",
+   "server_port": 24506,
+   "up_mbps": 200,
+   "down_mbps": 1000,
+   "password": "2dbad67b-0094-4374-82a2-7f09cd0af3dc",
+   "tls": {
+    "enabled": true,
+    "server_name": "47.74.7.160",
+    "insecure": true
+   }
+  },
+  {
+   "type": "vmess",
+   "tag": "🇯🇵 JPN Alibaba WoPan",
+   "server": "default.jp.alibaba.ddns.ad.989567.xyz",
+   "server_port": 443,
+   "uuid": "65ba18d6-4ae2-458d-a70b-aa831c2c32b2",
+   "security": "auto",
+   "transport": {
+    "type": "ws",
+    "path": "/",
+    "headers": {
+     "Host": "tjdownload.pan.wo.cn"
+    }
+   }
+  },
+  {
+   "type": "vmess",
+   "tag": "🇯🇵 JPN Akile",
+   "server": "default.jp.akile.ddns.ad.989567.xyz",
+   "server_port": 52785,
+   "uuid": "155ab1ce-91e7-4064-923d-a7da6ba30443",
+   "security": "auto",
+   "tls": {
+    "enabled": true,
+    "server_name": "default.jp.akile.ddns.ad.989567.xyz",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "transport": {
+    "type": "ws",
+    "path": "/",
+    "headers": {
+     "Host": "default.jp.akile.ddns.ad.989567.xyz"
+    }
+   }
+  },
+  {
+   "type": "tuic",
+   "tag": "🇯🇵 JPN Akile Tuic",
+   "server": "156.243.244.30",
+   "server_port": 35602,
+   "uuid": "430d8a65-6808-433a-a848-8ae459413d06",
+   "password": "430d8a65-6808-433a-a848-8ae459413d06",
+   "congestion_control": "bbr",
+   "udp_relay_mode": "native",
+   "zero_rtt_handshake": true,
+   "tls": {
+    "enabled": true,
+    "server_name": "156.243.244.30",
+    "insecure": true,
+    "alpn": "h3"
+   }
+  },
+  {
+   "type": "hysteria2",
+   "tag": "🇯🇵 JPN Akile Hysteria2",
+   "server": "156.243.244.30",
+   "server_port": 35601,
+   "up_mbps": 200,
+   "down_mbps": 1000,
+   "password": "430d8a65-6808-433a-a848-8ae459413d06",
+   "tls": {
+    "enabled": true,
+    "server_name": "156.243.244.30",
+    "insecure": true
+   }
+  },
+  {
+   "type": "vmess",
+   "tag": "🇯🇵 JPN Akile WoPan",
+   "server": "default.jp.akile.ddns.ad.989567.xyz",
+   "server_port": 443,
+   "uuid": "8783583f-324f-4943-8370-23b74e7f397e",
+   "security": "auto",
+   "transport": {
+    "type": "ws",
+    "path": "/",
+    "headers": {
+     "Host": "tjdownload.pan.wo.cn"
+    }
+   }
+  },
+  {
+   "type": "vmess",
+   "tag": "🇯🇵 JPN AWS",
+   "server": "default.jp.aws.ddns.ad.989567.xyz",
+   "server_port": 53913,
+   "uuid": "5db5549f-c7bd-4fd9-bcf6-de7cb3efbac9",
+   "security": "auto",
+   "tls": {
+    "enabled": true,
+    "server_name": "default.jp.aws.ddns.ad.989567.xyz"
+   },
+   "transport": {
+    "type": "ws",
+    "path": "/login",
+    "headers": {
+     "Host": "default.jp.aws.ddns.ad.989567.xyz"
+    }
+   }
+  },
+  {
+   "type": "vmess",
+   "tag": "🇯🇵 JPN AWS WoPan",
+   "server": "default.jp.aws.ddns.ad.989567.xyz",
+   "server_port": 443,
+   "uuid": "032ae0b6-b5ab-4fee-8d18-805b2c68abe9",
+   "security": "auto",
+   "transport": {
+    "type": "ws",
+    "path": "/",
+    "headers": {
+     "Host": "tjtn.pan.wo.cn"
+    }
+   }
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JPN Claw",
+   "server": "clawjp.carshare.pp.ua",
+   "server_port": 443,
+   "uuid": "405ba4ec-a6e4-453b-90f0-d427ba8d453b",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "lg.ap-northeast-1.claw.cloud",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "Y-lZaeEGAUYr0AfklXLKmivo__VAEwAl4it1Im01Ax0",
+     "short_id": "5cf9866a"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vmess",
+   "tag": "🇸🇬 SGP Huawei Cloud",
+   "server": "default.sg.huawei.ddns.ad.989567.xyz",
+   "server_port": 56293,
+   "uuid": "2d5de23a-8eac-42a7-94f3-189a30c51ad6",
+   "security": "auto",
+   "tls": {
+    "enabled": true,
+    "server_name": "default.sg.huawei.ddns.ad.989567.xyz",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "transport": {
+    "type": "ws",
+    "path": "/login",
+    "headers": {
+     "Host": "default.sg.huawei.ddns.ad.989567.xyz"
+    }
+   }
+  },
+  {
+   "type": "vmess",
+   "tag": "🇸🇬 SGP Huawei Cloud WoPan",
+   "server": "default.sg.huawei.ddns.ad.989567.xyz",
+   "server_port": 443,
+   "uuid": "38ebe9d3-4679-4881-aed2-946475435c8b",
+   "security": "auto",
+   "transport": {
+    "type": "ws",
+    "path": "/",
+    "headers": {
+     "Host": "tjdownload.pan.wo.cn"
+    }
+   }
+  }
+ ]
+}
