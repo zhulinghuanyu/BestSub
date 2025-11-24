@@ -1,0 +1,554 @@
+{
+ "outbounds": [
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HKG 1",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40048,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HKG 2",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40055,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HKG 3",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40056,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HKG 4",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40057,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HKG 5",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40058,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇹🇼 TWN 1",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40086,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇹🇼 TWN 2",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40087,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇹🇼 TWN 3",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40088,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇹🇼 TWN 4",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40089,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇹🇼 TWN 5",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40090,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JPN 1",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 43045,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JPN 2",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40075,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JPN 3",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40078,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JPN 4",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40076,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JPN 5",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40200,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SGP 1",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40046,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SGP 2",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40208,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SGP 3",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40209,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SGP 4",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40210,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SGP 5",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40211,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇸 USA 1",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40148,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇸 USA 2",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40223,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇸 USA 3",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40224,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇸 USA 4",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40225,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇸 USA 5",
+   "server": "2dc608afc99297fc.cdn.jiashule.com",
+   "server_port": 40226,
+   "uuid": "babc049f-240d-4878-998a-a9f5057f15b2",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "buylite.tv.apple.com",
+    "utls": {
+     "enabled": true,
+     "fingerprint": "qq"
+    },
+    "reality": {
+     "enabled": true,
+     "public_key": "_P_d-1ni4h1FaJpaUpofNxPeu2ehJCbi1QH_AEVhhm0",
+     "short_id": "f3ccc992"
+    }
+   },
+   "packet_encoding": "xudp"
+  }
+ ]
+}
