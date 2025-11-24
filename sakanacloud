@@ -1,1 +1,988 @@
-
+{
+ "outbounds": [
+  {
+   "type": "vless",
+   "tag": "⛽使用量: 405.24 GB/720 GB 56.28%",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 34434,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-11.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "⌛到期:长期有效",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 34434,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-11.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HK1",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 34434,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-11.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HK2",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 46252,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-01.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HK3",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 49104,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "upos-sz-estgoss.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HK4",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 48283,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-10.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HK5",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 11666,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-01.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HK6",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 26396,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "bilivideo.com.hcdnv.originabk.cdnhwc2.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇭🇰 HK7 [Home]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 52315,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-ct-01-26.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JP1",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 41075,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "httpdns.bilivideo.com.glan.site",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JP2",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 57390,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-fx-live-01.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JP3",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 31959,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-13.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JP4 [ISP]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 37321,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-09.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇹🇼 TW1 [Home] 0.7x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 55802,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "upos-sz-estgoss.bilivideo.com.fdfz.cn",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SG1 0.7x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 59285,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-12.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SG2",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 49736,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "upos-sz-mirrorcoso1.bilivideo.com.fdfz.cn",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SG3",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 46256,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-14.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇸🇬 SG4",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 46517,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-15.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇸 US1",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 36989,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-10.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇸 US2",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 34067,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "upos-sz-estgoss.bilivideo.com.fdfz.cn",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇸 US3 [Home]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 13984,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-03.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇲🇽 Mexico",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 49375,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-09.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇨🇦 Canada",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 24256,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-live-01.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇩🇪 Germany 0.8x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 13137,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "d1--cn-gotcha02.bilivideo.com.hdlvcloud.ks-cdn.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇳🇱 Netherlands 0.7x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 28264,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "upos-sz-mirrorcoso1.bilivideo.com.fdfz.cn",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇨🇭 Switzerland 0.8x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 24743,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-06.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇬🇧 United Kingdom",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 38673,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-01.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇬🇧 United Kingdom [Home]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 40873,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "d1--tf-gotcha04.bilivideo.com.tcdnlive.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇫🇷 France",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 29037,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-06.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇰🇷 South Korea [Home]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 40296,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-04.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇰🇵 North Korea 10x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 51446,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-fx-live-01.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇧🇲 Bermuda [WARP] 1.5x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 33621,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-12.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇦🇶 Antarctica [WARP] 1.5x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 37323,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-08.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇲🇴 Macau [WARP] 1.5x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 46321,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-13.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇦 Ukraine [WARP]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 12946,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-06.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇰🇭 Cambodia [ISP] 2x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 23058,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-08.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇹🇭 Thailand [ISP] 1.5x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 44734,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-live-02.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇻🇳 Vietnam [Home] 1.5x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 38269,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-12.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇲🇾 Malaysia [Home] 2x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 10800,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "live-tf-ff02.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇵🇭 Philippines [ISP] 2x",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 24462,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-04.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇦🇺 Australia",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 47150,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-02.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇷🇺 Russia",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 33535,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-03.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇵🇱 Poland [Edu]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 50899,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "upos-sz-origincosv.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇮🇸 Iceland",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 25973,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-02.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇹🇷 Turkiye",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 64182,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "upos-sz-estgoss.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇳🇬 Nigeria",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 64577,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-10.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇧🇷 Brazil",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 29575,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-05.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇺🇾 Uruguay [Home]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 47691,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-05.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "vless",
+   "tag": "🇵🇪 Peru [ISP]",
+   "server": "gzench6jys1y.softbank.best",
+   "server_port": 39256,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-bcache-13.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "shadowsocks",
+   "tag": "若未出现节点",
+   "server": "jp.kaigai.softbank.best",
+   "server_port": 40975,
+   "method": "aes-128-gcm",
+   "password": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584"
+  },
+  {
+   "type": "shadowsocks",
+   "tag": "请查看官网公告",
+   "server": "jp.kaigai.softbank.best",
+   "server_port": 57290,
+   "method": "aes-128-gcm",
+   "password": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584"
+  },
+  {
+   "type": "shadowsocks",
+   "tag": "需要更换客户端",
+   "server": "jp.kaigai.softbank.best",
+   "server_port": 31859,
+   "method": "aes-128-gcm",
+   "password": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584"
+  },
+  {
+   "type": "vless",
+   "tag": "🇯🇵 JP [备用03] 0.5x",
+   "server": "89.213.104.170",
+   "server_port": 443,
+   "uuid": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "flow": "xtls-rprx-vision",
+   "tls": {
+    "enabled": true,
+    "server_name": "cn-sh-cc-01-09.bilivideo.com",
+    "insecure": true,
+    "utls": {
+     "enabled": true,
+     "fingerprint": "chrome"
+    }
+   },
+   "packet_encoding": "xudp"
+  },
+  {
+   "type": "hysteria2",
+   "tag": "🇯🇵 JP [备用01] 0.3x",
+   "server": "89.213.104.47",
+   "server_port": 30303,
+   "password": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "tls": {
+    "enabled": true,
+    "server_name": "v3-prime-xg-web-pc.ixigua.com",
+    "insecure": true
+   }
+  },
+  {
+   "type": "hysteria2",
+   "tag": "🇯🇵 JP [备用02] 0.3x",
+   "server": "89.213.104.125",
+   "server_port": 443,
+   "password": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "tls": {
+    "enabled": true,
+    "server_name": "fast.wistia.net",
+    "insecure": true
+   }
+  },
+  {
+   "type": "hysteria2",
+   "tag": "🇩🇪 Germany [Direct] 0x",
+   "server": "185.254.96.183",
+   "server_port": 39175,
+   "password": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "tls": {
+    "enabled": true,
+    "server_name": "v3-prime-xg-web-pc.ixigua.com",
+    "insecure": true
+   }
+  },
+  {
+   "type": "hysteria2",
+   "tag": "🇺🇸 US [Direct] 0x",
+   "server": "oracleus.yuwan.link",
+   "server_port": 30303,
+   "password": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "tls": {
+    "enabled": true,
+    "server_name": "v3-prime-xg-web-pc.ixigua.com",
+    "insecure": true
+   }
+  },
+  {
+   "type": "hysteria2",
+   "tag": "🇭🇰 HK [Direct] 0x",
+   "server": "141.11.238.180",
+   "server_port": 30303,
+   "password": "9bf0d67e-d8cd-4a42-b21d-85affb9dc584",
+   "tls": {
+    "enabled": true,
+    "server_name": "v3-prime-xg-web-pc.ixigua.com",
+    "insecure": true
+   }
+  }
+ ]
+}
