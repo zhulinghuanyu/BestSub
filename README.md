@@ -9,7 +9,7 @@
 ### 🐱 Clash / Clash Verge / Stash 用户
 请复制以下链接粘贴到软件的“配置/订阅”中：
 ```text
-https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/clash.yaml
+[https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/clash.yaml](https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/clash.yaml)
 ```
 
 ---
@@ -17,7 +17,7 @@ https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/clash.yaml
 ### 🚀 V2rayN / V2rayNG / Shadowrocket 用户
 请复制以下链接粘贴到软件的“订阅设置”中：
 ```text
-https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/v2ray.txt
+[https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/v2ray.txt](https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/v2ray.txt)
 ```
 
 ---
@@ -26,12 +26,12 @@ https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/v2ray.txt
 
 * **TXT 文本订阅 (CDN 加速)**：
   ```text
-  https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/links.txt
+  [https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/links.txt](https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/links.txt)
   ```
 
 * **📌 当前抓取到的最新原始动态订阅链接（实时更新）**：
   ```text
-  https://yfamilys.com/subscribe/7PBgnp8gjXMjfASLbQVKhh8kN1nhZpSK
+  https://yfamilys.com/subscribe/23wzu7k7XYBctEw8BHEZ83X82Bl5-mvc
   ```
 
 ---
