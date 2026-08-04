@@ -5,7 +5,6 @@ on:
     - cron: '0 0 * * *'  # 每天自动运行
   workflow_dispatch:      # 支持手动触发
 
-# 关键：直接在代码里赋予写入权限，彻底解决 128 报错
 permissions:
   contents: write
 
@@ -34,6 +33,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add links.json
+          git add .
           git commit -m "Auto update: scraped subscribe links" || exit 0
           git push
