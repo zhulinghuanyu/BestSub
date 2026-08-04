@@ -31,7 +31,7 @@
 
 * **📌 当前抓取到的最新原始数据信息**：
   ```text
-  https://yfamilys.com/subscribe/-G5VNBS0a-qab99VKHNTrf-MtgZFEQi0
+  https://yfamilys.com/subscribe/fnzV8DJuC7ACB07LkIMdRTVucGjztxaQ
   ```
 
 ---
