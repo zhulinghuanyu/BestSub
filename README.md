@@ -4,12 +4,12 @@
 
 ---
 
-## ⚡ 客户端订阅链接（推荐使用）
+## ⚡ 客户端订阅链接
 
 ### 🐱 Clash / Clash Verge / Stash 用户
 请复制以下链接粘贴到软件的“配置/订阅”中：
 ```text
-[https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/clash.yaml](https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/clash.yaml)
+[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml)
 ```
 
 ---
@@ -17,21 +17,21 @@
 ### 🚀 V2rayN / V2rayNG / Shadowrocket 用户
 请复制以下链接粘贴到软件的“订阅设置”中：
 ```text
-[https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/v2ray.txt](https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/v2ray.txt)
+[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt)
 ```
 
 ---
 
 ## 🔗 原始动态链接信息
 
-* **TXT 文本订阅 (CDN 加速)**：
+* **TXT 文本订阅**：
   ```text
-  [https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/links.txt](https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/links.txt)
+  [https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt)
   ```
 
-* **📌 当前抓取到的最新原始动态订阅链接（实时更新）**：
+* **📌 当前抓取到的最新原始数据信息**：
   ```text
-  https://yfamilys.com/subscribe/nrp-fkHguhWbawG30dZ50MhVOhcTYzdg
+  https://yfamilys.com/subscribe/-G5VNBS0a-qab99VKHNTrf-MtgZFEQi0
   ```
 
 ---
