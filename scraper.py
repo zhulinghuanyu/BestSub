@@ -43,7 +43,7 @@ def update_readme(raw_content):
 ### 🐱 Clash / Clash Verge / Stash 用户
 请复制以下链接粘贴到软件的“配置/订阅”中：
 {bt}text
-[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml)
+https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
 {bt}
 
 ---
@@ -51,7 +51,7 @@ def update_readme(raw_content):
 ### 🚀 V2rayN / V2rayNG / Shadowrocket 用户
 请复制以下链接粘贴到软件的“订阅设置”中：
 {bt}text
-[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt)
+https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
 {bt}
 
 ---
@@ -60,7 +60,7 @@ def update_readme(raw_content):
 
 * **TXT 文本订阅**：
   {bt}text
-  [https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt)
+  https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
   {bt}
 
 * **📌 当前抓取到的最新原始数据信息**：
