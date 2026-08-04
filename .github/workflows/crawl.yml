@@ -1,88 +1,50 @@
-name: Crawl yfamilys Subscribe
+name: Fetch Yfamily Temporary Sub
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
-  workflow_dispatch:
+    # 每 2 小时执行一次（UTC 时间）
+    - cron: '0 */2 * * *'
+  workflow_dispatch:  # 支持手动触发
 
 jobs:
-  crawl:
+  fetch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Playwright
+      - name: Fetch and extract subscription link
+        id: extract
         run: |
-          npm init -y
-          npm install playwright
-          npx playwright install chromium --with-deps
+          # 获取页面内容
+          HTML=$(curl -sL --max-time 15 \
+            -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
+            "https://yfamilys.com/subscribe")
 
-      - name: Crawl with Playwright
-        run: |
-          node << 'EOF'
-          const { chromium } = require('playwright');
-          const fs = require('fs');
+          # 提取 url-box 里的链接
+          LINK=$(echo "$HTML" | grep -oP 'https://yfamilys\.com/subscribe/[A-Za-z0-9_-]+' | head -1)
 
-          (async () => {
-            const browser = await chromium.launch({ headless: true });
-            const page = await browser.newPage();
-            
-            await page.setExtraHTTPHeaders({
-              'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8'
-            });
-            
-            console.log('正在访问页面...');
-            await page.goto('https://yfamilys.com/subscribe', { 
-              waitUntil: 'networkidle',
-              timeout: 30000 
-            });
-            
-            // 等待链接出现
-            await page.waitForSelector('#urlBox, .url-box', { timeout: 15000 }).catch(() => {});
-            
-            const content = await page.content();
-            console.log('页面长度:', content.length);
-            
-            // 提取链接
-            let link = await page.evaluate(() => {
-              const el = document.querySelector('#urlBox') || document.querySelector('.url-box');
-              return el ? el.innerText.trim() : null;
-            });
-            
-            if (!link) {
-              // 正则兜底
-              const match = content.match(/https:\/\/yfamilys\.com\/subscribe\/[A-Za-z0-9]+/);
-              link = match ? match[0] : null;
-            }
-            
-            if (!link) {
-              console.log('❌ 未找到订阅链接');
-              console.log(content.substring(0, 800));
-              process.exit(1);
-            }
-            
-            console.log('✅ 找到链接:', link);
-            fs.writeFileSync('subscribe.txt', link + '\n');
-            fs.appendFileSync('history.log', new Date().toISOString() + ' - ' + link + '\n');
-            
-            await browser.close();
-          })();
-          EOF
+          if [ -z "$LINK" ]; then
+            echo "未能提取到订阅链接"
+            exit 1
+          fi
 
-      - name: Commit and push
+          echo "提取到的链接: $LINK"
+          echo "link=$LINK" >> $GITHUB_OUTPUT
+
+          # 写入文件
+          echo "$LINK" > latest_sub.txt
+          echo "更新时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> latest_sub.txt
+
+      - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add subscribe.txt history.log || true
-          if git diff --staged --quiet; then
-            echo "链接没有变化，跳过提交"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet latest_sub.txt; then
+            echo "链接未变化，跳过提交"
           else
-            git commit -m "Update subscribe link $(date -u '+%Y-%m-%d %H:%M')"
+            git add latest_sub.txt
+            git commit -m "更新临时订阅链接 $(date -u '+%Y-%m-%d %H:%M UTC')"
             git push
           fi
