@@ -31,7 +31,7 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
 
 * **📌 当前抓取到的最新原始数据信息**：
   ```text
-  https://yfamilys.com/subscribe/tH3P8XmI1qliTCqni4ffDZVd0KWqFscF
+  https://yfamilys.com/subscribe/G-BwZgJYQz2MVN5ldZ1NClfSf3vz9UB-
   ```
 
 ---
