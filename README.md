@@ -31,7 +31,7 @@ https://cdn.jsdelivr.net/gh/zhulinghuanyu/BestSub@main/v2ray.txt
 
 * **📌 当前抓取到的最新原始动态订阅链接（实时更新）**：
   ```text
-  https://yfamilys.com/subscribe/cxuUxiQguB4ahWkt6d8mvaiX1sdmHvTg
+  https://yfamilys.com/subscribe/7PBgnp8gjXMjfASLbQVKhh8kN1nhZpSK
   ```
 
 ---
