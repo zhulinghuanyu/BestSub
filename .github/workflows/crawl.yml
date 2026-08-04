@@ -2,7 +2,7 @@ name: Crawl yfamilys Subscribe
 
 on:
   schedule:
-    - cron: '0 */6 * * *'   # 每 6 小时运行一次
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,51 +12,74 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Crawl subscribe link
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
         run: |
-          echo "开始抓取页面..."
-          
-          # 使用更完整的请求头
-          HTML=$(curl -sL \
-            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
-            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" \
-            -H "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8" \
-            --max-time 20 \
-            https://yfamilys.com/subscribe)
-          
-          echo "页面长度: ${#HTML}"
-          
-          # 多种方式提取链接
-          LINK=$(echo "$HTML" | grep -oE 'https://yfamilys\.com/subscribe/[A-Za-z0-9]+' | head -1)
-          
-          # 如果第一种失败，尝试从 url-box 提取
-          if [ -z "$LINK" ]; then
-            LINK=$(echo "$HTML" | grep -oP '(?<=id="urlBox">)[^<]+' | head -1)
-          fi
-          
-          # 再尝试从 copyLink 函数提取
-          if [ -z "$LINK" ]; then
-            LINK=$(echo "$HTML" | grep -oP "copyLink\('https://yfamilys\.com/subscribe/[A-Za-z0-9]+'\)" | grep -oE 'https://yfamilys\.com/subscribe/[A-Za-z0-9]+' | head -1)
-          fi
-          
-          if [ -z "$LINK" ]; then
-            echo "❌ 未找到订阅链接"
-            echo "页面前 500 字符预览："
-            echo "$HTML" | head -c 500
-            exit 1
-          fi
-          
-          echo "✅ 找到链接: $LINK"
-          echo "$LINK" > subscribe.txt
-          echo "$(date -u '+%Y-%m-%d %H:%M:%S UTC') - $LINK" >> history.log
+          npm init -y
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Crawl with Playwright
+        run: |
+          node << 'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage();
+            
+            await page.setExtraHTTPHeaders({
+              'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8'
+            });
+            
+            console.log('正在访问页面...');
+            await page.goto('https://yfamilys.com/subscribe', { 
+              waitUntil: 'networkidle',
+              timeout: 30000 
+            });
+            
+            // 等待链接出现
+            await page.waitForSelector('#urlBox, .url-box', { timeout: 15000 }).catch(() => {});
+            
+            const content = await page.content();
+            console.log('页面长度:', content.length);
+            
+            // 提取链接
+            let link = await page.evaluate(() => {
+              const el = document.querySelector('#urlBox') || document.querySelector('.url-box');
+              return el ? el.innerText.trim() : null;
+            });
+            
+            if (!link) {
+              // 正则兜底
+              const match = content.match(/https:\/\/yfamilys\.com\/subscribe\/[A-Za-z0-9]+/);
+              link = match ? match[0] : null;
+            }
+            
+            if (!link) {
+              console.log('❌ 未找到订阅链接');
+              console.log(content.substring(0, 800));
+              process.exit(1);
+            }
+            
+            console.log('✅ 找到链接:', link);
+            fs.writeFileSync('subscribe.txt', link + '\n');
+            fs.appendFileSync('history.log', new Date().toISOString() + ' - ' + link + '\n');
+            
+            await browser.close();
+          })();
+          EOF
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
           git add subscribe.txt history.log || true
-          
           if git diff --staged --quiet; then
             echo "链接没有变化，跳过提交"
           else
