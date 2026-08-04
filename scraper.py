@@ -163,7 +163,7 @@ def fetch_links():
     # 2. 转换生成 Clash 配置文件 (使用 params 自动处理参数转义 + 内容校验)
     try:
         print("🔄 正在生成 Clash 配置文件...")
-        sub_api = "[https://api.v1.mk/sub](https://api.v1.mk/sub)"
+        sub_api = "https://api.v1.mk/sub"
         params = {"target": "clash", "url": extracted_url, "insert": "false"}
         res_clash = scraper.get(sub_api, params=params, timeout=30)
 
@@ -182,7 +182,7 @@ def fetch_links():
     # 3. 转换生成 V2ray 专属订阅文件 (v2ray.txt)
     try:
         print("🔄 正在生成 V2ray 订阅格式...")
-        sub_api = "[https://api.v1.mk/sub](https://api.v1.mk/sub)"
+        sub_api = "https://api.v1.mk/sub"
         params = {"target": "v2ray", "url": extracted_url}
         res_v2ray = scraper.get(sub_api, params=params, timeout=30)
 
