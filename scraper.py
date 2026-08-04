@@ -1,10 +1,9 @@
-import json
 import re
 import cloudscraper
 
 TARGET_URL = "https://yfamilys.com/subscribe"
 
-# 需要过滤掉的垃圾域名和文件后缀
+# 过滤黑名单
 EXCLUDE_KEYWORDS = [
     "cloudflareinsights.com",
     "google-analytics.com",
@@ -30,36 +29,29 @@ def fetch_links():
         print(f"❌ 网页请求失败: {e}")
         html_text = ""
 
-    extracted_data = []
-    found_urls = set()
+    extracted_urls = []
 
     if html_text:
-        # 正则匹配所有 http(s) 以及节点协议链接
+        # 正则匹配所有节点/订阅协议链接
         raw_url_pattern = r'(?:https?|clash|v2ray|sub|vmess|vless|trojan|ss|ssr|hysteria2|hy2)://[^\s<"\'>]+'
         matches = re.findall(raw_url_pattern, html_text)
         
         for url in matches:
-            # 1. 过滤掉包含黑名单关键词的链接（如 cloudflare 统计 JS）
+            # 过滤垃圾链接与原页面链接
             if any(kw in url.lower() for kw in EXCLUDE_KEYWORDS):
                 continue
-            
-            # 2. 过滤掉页面本身的 URL
             if url in (TARGET_URL, f"{TARGET_URL}/"):
                 continue
 
-            # 3. 去重保存
-            if url not in found_urls:
-                extracted_data.append({
-                    "text": "动态订阅链接" if "subscribe/" in url else "节点链接",
-                    "url": url
-                })
-                found_urls.add(url)
+            # 去重保存纯 URL
+            if url not in extracted_urls:
+                extracted_urls.append(url)
 
-    print(f"✅ 抓取完成！共提取到 {len(extracted_data)} 条有效订阅链接")
+    print(f"✅ 抓取完成！共提取到 {len(extracted_urls)} 条链接")
 
-    # 保存结果
-    with open("links.json", "w", encoding="utf-8") as f:
-        json.dump(extracted_data, f, ensure_ascii=False, indent=2)
+    # 直接将纯链接写入 links.txt（一行一个链接）
+    with open("links.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(extracted_urls))
 
 if __name__ == "__main__":
     fetch_links()
