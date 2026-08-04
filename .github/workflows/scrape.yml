@@ -2,7 +2,7 @@ name: Auto Scrape Subscribe Links
 
 on:
   schedule:
-    # 建议改为每 6 小时运行一次（标准 UTC 时间：0, 6, 12, 18 点）    - cron: '*/15 * * * *'  # 👈 每 15 分钟自动运行一次
+    - cron: '*/15 * * * *'  # 👈 每 15 分钟自动运行一次
   workflow_dispatch:      # 支持手动触发
 
 concurrency:
