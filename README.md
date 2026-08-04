@@ -31,7 +31,7 @@
 
 * **📌 当前抓取到的最新原始动态订阅链接（实时更新）**：
   ```text
-  https://yfamilys.com/subscribe/ayF2yz2Mp-UXe94oGLFFrslnN0j3qTs0
+  https://yfamilys.com/subscribe/1jT9LIiJ0RkfzeZnG2FhLBhDEIZHOtKE
   ```
 
 ---
