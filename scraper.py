@@ -1,9 +1,8 @@
 import re
 import cloudscraper
 
-TARGET_URL = "[https://yfamilys.com/subscribe](https://yfamilys.com/subscribe)"
+TARGET_URL = "https://yfamilys.com/subscribe"
 
-# 过滤黑名单（剔除 JS/图片/统计脚本等无用链接）
 EXCLUDE_KEYWORDS = [
     "cloudflareinsights.com",
     "google-analytics.com",
