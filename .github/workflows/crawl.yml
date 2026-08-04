@@ -15,10 +15,8 @@ jobs:
 
       - name: Crawl subscribe link
         run: |
-          # 抓取页面内容
           HTML=$(curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" https://yfamilys.com/subscribe)
           
-          # 用正则提取订阅链接（根据实际页面调整）
           LINK=$(echo "$HTML" | grep -oP 'https://yfamilys\.com/subscribe/[A-Za-z0-9]+' | head -1)
           
           if [ -z "$LINK" ]; then
@@ -28,8 +26,6 @@ jobs:
           
           echo "✅ 找到链接: $LINK"
           echo "$LINK" > subscribe.txt
-          
-          # 可选：同时保存时间戳
           echo "$(date -u '+%Y-%m-%d %H:%M:%S UTC') - $LINK" >> history.log
 
       - name: Commit and push
@@ -39,7 +35,6 @@ jobs:
           
           git add subscribe.txt history.log || true
           
-          # 只有内容变化才提交
           if git diff --staged --quiet; then
             echo "链接没有变化，跳过提交"
           else
