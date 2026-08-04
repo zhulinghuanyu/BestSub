@@ -29,7 +29,7 @@ def update_readme(raw_url):
 
 ---
 
-## ⚡ 客户端订阅链接（推荐使用）
+## ⚡ 客户端订阅链接
 
 ### 🐱 Clash / Clash Verge / Stash 用户
 请复制以下链接粘贴到软件的“配置/订阅”中：
@@ -49,7 +49,7 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
 
 ## 🔗 原始动态链接信息
 
-* **TXT 文本订阅 (CDN 加速)**：
+* **TXT 文本订阅**：
   {bt}text
  https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
   {bt}
