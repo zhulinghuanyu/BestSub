@@ -2,8 +2,12 @@ name: Auto Scrape Subscribe Links
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # 👈 每 15 分钟自动运行一次
+    # 建议改为每 6 小时运行一次（标准 UTC 时间：0, 6, 12, 18 点）    - cron: '*/15 * * * *'  # 👈 每 15 分钟自动运行一次
   workflow_dispatch:      # 支持手动触发
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -20,6 +24,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+          cache: 'pip'
 
       - name: 安装依赖包
         run: |
@@ -33,6 +38,13 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add .
-          git commit -m "Auto update: scraped subscribe links" || exit 0
-          git push
+          
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto update: scraped subscribe links [skip ci]"
+            git pull --rebase origin main || true
+            git push origin main
+          else
+            echo "ℹ️ 内容未发生变化，跳过提交"
+          fi
