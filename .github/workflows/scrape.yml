@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: 检出代码
         uses: actions/checkout@v4
         with:
@@ -25,27 +26,40 @@ jobs:
       - name: 设置 Python 环境
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-          cache: 'pip' # 开启 pip 缓存，加快后续运行速度
+          python-version: "3.10"
+          cache: pip
 
       - name: 安装依赖
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
 
       - name: 执行爬虫
         run: |
           python scraper.py
 
+      - name: 检查生成文件
+        run: |
+          echo "===== Git 状态 ====="
+          git status
+
+          echo "===== 文件列表 ====="
+          ls -lh *.txt *.yaml 2>/dev/null || true
+
       - name: 提交更新
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add .
-          if ! git diff --staged --quiet; then
-            git commit -m "Auto update subscribe links [skip ci]"
-            git pull --rebase origin main
-            git push origin main
-          else
+
+          if git diff --cached --quiet; then
             echo "没有变化"
+            exit 0
           fi
+
+          git commit -m "Auto update subscribe links"
+
+          git push origin HEAD:${{ github.ref_name }}
