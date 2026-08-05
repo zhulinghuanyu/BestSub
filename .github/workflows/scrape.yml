@@ -2,8 +2,8 @@ name: Auto Scrape Subscribe Links
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
-  workflow_dispatch:
+    - cron: '*/10 * * * *'  # 每 10 分钟运行一次
+  workflow_dispatch:        # 允许手动点击 Run workflow 触发
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,17 +17,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: 检出代码
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1  
 
       - name: 设置 Python 环境
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-          cache: pip
+          cache: pip     
 
       - name: 安装依赖
         run: |
@@ -40,21 +39,22 @@ jobs:
         run: |
           python scraper.py
 
-      - name: 检查生成文件
+      - name: 检查生成文件 (Debug)
         run: |
           echo "===== Git 状态 ====="
           git status
           echo "===== 文件列表 ====="
-          ls -lh *.txt *.yaml 2>/dev/null || true
+          ls -lh *.md *.txt *.yaml 2>/dev/null || true
 
-      - name: 提交更新
+      - name: 提交并推送更新
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md links.txt v2ray.txt clash.yaml
+          
+          git add -A || true
 
           if git diff --cached --quiet; then
-            echo "没有变化"
+            echo "🟢 节点无变化，跳过提交"
             exit 0
           fi
 
