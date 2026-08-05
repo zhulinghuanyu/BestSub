@@ -62,26 +62,23 @@ def update_readme(raw_content):
         display = f"已成功抓取 {count} 条节点"
 
     content = f"""# 🚀 BestSub 自动订阅更新
-自动抓取 yfamilys 最新订阅。
-自动转换：
-- Clash
-- V2Ray
+自动抓取 yfamilys 最新订阅，转换：Clash / V2Ray。
 
 ---
 
 ## Clash订阅
 {bt}text
-[https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/clash.yaml](https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/clash.yaml)
+https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/clash.yaml
 {bt}
 
 ## V2Ray订阅
 {bt}text
-[https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/v2ray.txt](https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/v2ray.txt)
+https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/v2ray.txt
 {bt}
 
 ## 原始订阅
 {bt}text
-[https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt](https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt)
+https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt
 {bt}
 
 ---
