@@ -126,24 +126,26 @@ def is_valid_sub_url(url):
     return any(feat in url_lower for feat in sub_features)
 
 
-def convert_clash(scraper, target_url):
-    """通过线上 API 将源链接转为 Clash YAML"""
+def convert_sub(scraper, target, target_url):
+    """通过线上 API 进行格式转换"""
     timestamp = int(time.time())
 
     for api in SUB_APIS:
         try:
             params = {
-                "target": "clash",
+                "target": target,
                 "url": target_url,
                 "insert": "false",
                 "_t": timestamp,
             }
-            print(f"🔄 正在尝试通过 {api} 生成 Clash 配置...")
+            print(f"🔄 正在尝试通过 {api} 生成 {target} 格式...")
             res = scraper.get(api, params=params, timeout=25)
 
             if res.status_code == 200:
                 text = res.text
-                if "proxies:" in text or "proxy-groups:" in text:
+                if target == "clash" and ("proxies:" in text or "proxy-groups:" in text):
+                    return text
+                elif target == "v2ray" and len(text.strip()) > 20:
                     return text
         except Exception as e:
             print(f"⚠️ 转换节点 {api} 响应失败: {e}")
@@ -205,24 +207,31 @@ def fetch_links():
 
     print(f"✅ 抓取成功！内容前缀: {extracted_content[:80]}...")
 
-    # 1. 保存纯文本源链接或节点列表 (links.txt)
+    is_single_url = extracted_content.startswith("http://") or extracted_content.startswith("https://")
+
+    # 1. 保存原始提取结果 (links.txt)
     with open("links.txt", "w", encoding="utf-8") as f:
         f.write(extracted_content)
 
-    # 2. 本地生成 V2ray 格式订阅 (v2ray.txt)
-    # 如果抓取到的是多行节点，直接 Base64 编码，无需依赖外部 API
-    if not (extracted_content.startswith("http://") or extracted_content.startswith("https://")):
+    # 2. 生成 V2ray 订阅格式 (v2ray.txt)
+    if is_single_url:
+        print("🔄 抓取到的是单一链接，通过转换 API 生成 V2ray 格式...")
+        v2ray_content = convert_sub(scraper, "v2ray", extracted_content)
+        if v2ray_content:
+            with open("v2ray.txt", "w", encoding="utf-8") as f:
+                f.write(v2ray_content)
+            print("✅ v2ray.txt 生成成功！")
+        else:
+            print("⚠️ V2ray 转换未返回有效数据，保留现有文件")
+    else:
         v2ray_base64 = base64.b64encode(extracted_content.encode("utf-8")).decode("utf-8")
         with open("v2ray.txt", "w", encoding="utf-8") as f:
             f.write(v2ray_base64)
-        print("✅ v2ray.txt 在本地本地 Base64 生成成功！")
-    else:
-        print("ℹ️ 抓取到的是单一链接，跳过本地 v2ray 生成")
+        print("✅ v2ray.txt 本地 Base64 编码成功！")
 
     # 3. 转换生成 Clash 配置文件 (clash.yaml)
-    # 若抓到的是多行节点，传入 GitHub 仓库中的 links.txt Raw 链接进行转换，避免请求 URL 超长
-    clash_target_url = RAW_LINKS_URL if not extracted_content.startswith("http") else extracted_content
-    clash_content = convert_clash(scraper, clash_target_url)
+    clash_target_url = extracted_content if is_single_url else RAW_LINKS_URL
+    clash_content = convert_sub(scraper, "clash", clash_target_url)
 
     if clash_content:
         with open("clash.yaml", "w", encoding="utf-8") as f:
