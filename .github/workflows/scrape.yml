@@ -20,7 +20,7 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1  
+          fetch-depth: 0  
 
       - name: 设置 Python 环境
         uses: actions/setup-python@v5
@@ -39,7 +39,7 @@ jobs:
         run: |
           python scraper.py
 
-      - name: 检查生成文件 (Debug)
+      - name: 检查生成文件
         run: |
           echo "===== Git 状态 ====="
           git status
@@ -58,5 +58,10 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Auto update subscribe links"
-          git push origin HEAD:${{ github.ref_name }}
+          if git log -1 --pretty=%B | grep -q "Auto update"; then
+            git commit --amend --no-edit --date=now
+          else
+            git commit -m "Auto update subscribe links"
+          fi
+          
+          git push --force-with-lease origin HEAD:${{ github.ref_name }}
