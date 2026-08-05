@@ -4,7 +4,7 @@
 
 ---
 
-## Clash 用户
+## Clash订阅链接
 
 ```text
 https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
@@ -12,7 +12,7 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
 
 ---
 
-## V2Ray 用户
+## V2Ray订阅链接
 
 ```text
 https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
@@ -31,7 +31,7 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
 ## 当前抓取信息
 
 ```text
-https://yfamilys.com/subscribe/ONBIWRqYQDMAR-c62etpewXziUZndm7u
+https://yfamilys.com/subscribe/IEPQEY6A-B7CdaNix0lZVxfBUWnxDNcO
 ```
 
 ---
