@@ -51,6 +51,17 @@ def safe_write(filename, content):
     os.replace(tmp, filename)
 
 # ===============================
+# 清洗时间戳注释行
+# ===============================
+TIME_COMMENT_RE = re.compile(r"^\s*(//|#).*\d{4}-\d{2}-\d{2}.*$", re.I)
+
+def strip_time_comments(content):
+    """去除 // Updated: 2026-xx-xx ... 或 # Updated: 2026-xx-xx ... 这类时间注释行，
+    只匹配"以 // 或 # 开头且包含日期"的行，不会误伤 base64 或 YAML 正文"""
+    lines = [ln for ln in content.splitlines() if not TIME_COMMENT_RE.match(ln)]
+    return "\n".join(lines).strip()
+
+# ===============================
 # README 更新
 # ===============================
 def update_readme(raw_content):
@@ -212,7 +223,6 @@ def fetch_links():
                     break
     if not extracted:
         raise Exception("❌ 未在页面中查找到有效节点或动态链接")
-    now = datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M:%S (UTC+8)")
     safe_write("links.txt", extracted)
 
     # -----------------------------
@@ -223,18 +233,21 @@ def fetch_links():
         try:
             print("⬇️ 正在直连拉取 V2Ray 订阅节点...")
             direct_res = scraper.get(extracted, headers=SUB_CLIENT_HEADERS, timeout=15)
-            text_lower = direct_res.text.lower()        
+            text_lower = direct_res.text.lower()
             is_html = "<html" in text_lower
-            is_clash_yaml = "proxies:" in text_lower and ("rules:" in text_lower or "proxy-groups:" in text_lower)            
+            is_clash_yaml = "proxies:" in text_lower and ("rules:" in text_lower or "proxy-groups:" in text_lower)
             if direct_res.status_code == 200 and len(direct_res.text.strip()) > 30 and not is_html and not is_clash_yaml:
                 v2ray_content = direct_res.text.strip()
                 print("✅ 直连成功获取 V2Ray 内容")
         except Exception as e:
             print(f"⚠️ 直连拉取失败，尝试通过 API 转换: {e}")
         if not v2ray_content:
-            v2ray_content = convert_sub(scraper, "v2ray", extracted)           
+            v2ray_content = convert_sub(scraper, "v2ray", extracted)
         if not v2ray_content:
-            raise Exception("❌ V2Ray 内容获取及转换均失败")           
+            raise Exception("❌ V2Ray 内容获取及转换均失败")
+        v2ray_content = strip_time_comments(v2ray_content)
+        if not v2ray_content:
+            raise Exception("❌ V2Ray 内容清洗后为空")
         safe_write("v2ray.txt", v2ray_content)
     else:
         data = base64.b64encode(extracted.encode()).decode()
@@ -247,7 +260,10 @@ def fetch_links():
     clash_content = convert_sub(scraper, "clash", extracted)
     if not clash_content:
         raise Exception("❌ Clash 配置转换失败")
-    safe_write("clash.yaml", f"# Updated: {now}\n" + clash_content)
+    clash_content = strip_time_comments(clash_content)
+    if not clash_content:
+        raise Exception("❌ Clash 配置清洗后为空")
+    safe_write("clash.yaml", clash_content)
     print("✅ clash.yaml 更新完成")
 
     # 更新 README
