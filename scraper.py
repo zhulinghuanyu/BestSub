@@ -1,3 +1,4 @@
+import base64
 import html
 import re
 import time
@@ -5,8 +6,8 @@ import cloudscraper
 from bs4 import BeautifulSoup
 
 TARGET_URL = "https://yfamilys.com/subscribe"
+RAW_LINKS_URL = "https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt"
 
-# 过滤不相关的域名和文件后缀
 EXCLUDE_KEYWORDS = [
     "cloudflareinsights.com",
     "google-analytics.com",
@@ -22,7 +23,6 @@ EXCLUDE_KEYWORDS = [
     "githubusercontent.com",
 ]
 
-# 备用转换 API 列表（解决单节点限流或缓存不更新问题）
 SUB_APIS = [
     "https://api.v1.mk/sub",
     "https://sub.id9.cc/sub",
@@ -92,7 +92,6 @@ def is_valid_sub_url(url):
     if any(kw in url_lower for kw in EXCLUDE_KEYWORDS):
         return False
 
-    # 1. 节点协议前缀直接放行
     node_protocols = (
         "vmess://",
         "vless://",
@@ -107,7 +106,6 @@ def is_valid_sub_url(url):
     if url_lower.startswith(node_protocols):
         return True
 
-    # 2. 如果是当前站点的链接，必须包含订阅特征词
     if "yfamilys.com" in url_lower:
         if not any(
             k in url_lower
@@ -115,7 +113,6 @@ def is_valid_sub_url(url):
         ):
             return False
 
-    # 3. 普通 HTTP(S) 链接需包含常见订阅特征词
     sub_features = [
         "sub",
         "token",
@@ -129,26 +126,24 @@ def is_valid_sub_url(url):
     return any(feat in url_lower for feat in sub_features)
 
 
-def convert_sub(scraper, target, url_param):
-    """通用订阅转换函数，包含时间戳防缓存与多节点容错机制"""
+def convert_clash(scraper, target_url):
+    """通过线上 API 将源链接转为 Clash YAML"""
     timestamp = int(time.time())
 
     for api in SUB_APIS:
         try:
             params = {
-                "target": target,
-                "url": url_param,
+                "target": "clash",
+                "url": target_url,
                 "insert": "false",
-                "_t": timestamp,  # 传入当前时间戳破除转换站点的服务器缓存
+                "_t": timestamp,
             }
-            print(f"🔄 正在尝试通过 {api} 生成 {target} 格式...")
+            print(f"🔄 正在尝试通过 {api} 生成 Clash 配置...")
             res = scraper.get(api, params=params, timeout=25)
 
             if res.status_code == 200:
                 text = res.text
-                if target == "clash" and ("proxies:" in text or "proxy-groups:" in text):
-                    return text
-                elif target == "v2ray" and len(text.strip()) > 20:
+                if "proxies:" in text or "proxy-groups:" in text:
                     return text
         except Exception as e:
             print(f"⚠️ 转换节点 {api} 响应失败: {e}")
@@ -170,14 +165,12 @@ def fetch_links():
     try:
         response = scraper.get(TARGET_URL, timeout=30)
         response.encoding = response.apparent_encoding or "utf-8"
-        # 进行 HTML 反转义处理，防止 &amp; 导致 URL 损坏
         html_text = html.unescape(response.text)
     except Exception as e:
         print(f"❌ 网页请求失败: {e}")
         return
 
-    extracted_content = None  # 用于写入 links.txt 的文本内容
-    api_url_param = None      # 用于提交给 subconverter API 的 url 参数
+    extracted_content = None
 
     if html_text:
         # 第一优先级：匹配明文节点列表
@@ -185,11 +178,8 @@ def fetch_links():
         node_matches = re.findall(node_pattern, html_text, re.IGNORECASE)
 
         if node_matches:
-            # 保持顺序去重
             node_matches = list(dict.fromkeys(node_matches))
             extracted_content = "\n".join(node_matches)
-            # 传给 API 时用 | 分隔，限制最大前 200 条节点防止 URL 溢出
-            api_url_param = "|".join(node_matches[:200])
             print(f"✅ 成功提取到 {len(node_matches)} 条节点数据！")
         else:
             # 第二优先级：匹配动态订阅 URL
@@ -207,7 +197,6 @@ def fetch_links():
                     continue
                 if is_valid_sub_url(url):
                     extracted_content = url
-                    api_url_param = url
                     break
 
     if not extracted_content:
@@ -220,23 +209,27 @@ def fetch_links():
     with open("links.txt", "w", encoding="utf-8") as f:
         f.write(extracted_content)
 
-    # 2. 转换生成 Clash 配置文件
-    clash_content = convert_sub(scraper, "clash", api_url_param)
+    # 2. 本地生成 V2ray 格式订阅 (v2ray.txt)
+    # 如果抓取到的是多行节点，直接 Base64 编码，无需依赖外部 API
+    if not (extracted_content.startswith("http://") or extracted_content.startswith("https://")):
+        v2ray_base64 = base64.b64encode(extracted_content.encode("utf-8")).decode("utf-8")
+        with open("v2ray.txt", "w", encoding="utf-8") as f:
+            f.write(v2ray_base64)
+        print("✅ v2ray.txt 在本地本地 Base64 生成成功！")
+    else:
+        print("ℹ️ 抓取到的是单一链接，跳过本地 v2ray 生成")
+
+    # 3. 转换生成 Clash 配置文件 (clash.yaml)
+    # 若抓到的是多行节点，传入 GitHub 仓库中的 links.txt Raw 链接进行转换，避免请求 URL 超长
+    clash_target_url = RAW_LINKS_URL if not extracted_content.startswith("http") else extracted_content
+    clash_content = convert_clash(scraper, clash_target_url)
+
     if clash_content:
         with open("clash.yaml", "w", encoding="utf-8") as f:
             f.write(clash_content)
         print("✅ clash.yaml 生成成功！")
     else:
-        print("⚠️ 所有转换接口均未返回有效数据，保留现有 clash.yaml")
-
-    # 3. 转换生成 V2ray 专属订阅文件 (v2ray.txt)
-    v2ray_content = convert_sub(scraper, "v2ray", api_url_param)
-    if v2ray_content:
-        with open("v2ray.txt", "w", encoding="utf-8") as f:
-            f.write(v2ray_content)
-        print("✅ v2ray.txt 生成成功！")
-    else:
-        print("⚠️ 所有转换接口均未返回有效数据，保留现有 v2ray.txt")
+        print("⚠️ Clash 转换接口未返回有效数据，保留现有 clash.yaml")
 
     # 4. 自动写入/更新 README.md
     update_readme(extracted_content)
