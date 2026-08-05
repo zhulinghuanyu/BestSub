@@ -6,7 +6,6 @@ import cloudscraper
 from bs4 import BeautifulSoup
 
 TARGET_URL = "https://yfamilys.com/subscribe"
-RAW_LINKS_URL = "https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt"
 
 EXCLUDE_KEYWORDS = [
     "cloudflareinsights.com",
@@ -37,7 +36,7 @@ def update_readme(raw_content):
     if raw_content.startswith("http://") or raw_content.startswith("https://"):
         display_raw = raw_content
     else:
-        node_count = len(raw_content.splitlines())
+        node_count = len([line for line in raw_content.splitlines() if line.strip()])
         display_raw = f"已成功抓取并整合 {node_count} 条最新节点数据（已自动同步至上方订阅地址）"
 
     readme_content = f"""# 🚀 BestSub - 每日订阅链接自动更新
@@ -49,17 +48,17 @@ def update_readme(raw_content):
 ## ⚡ 客户端订阅链接
 
 ### 🐱 Clash / Clash Verge / Stash 用户
-请复制以下链接粘贴到软件的“配置/订阅”中：
+复制以下链接粘贴到软件的“配置/订阅”中：
 {bt}text
-[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml)
+https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
 {bt}
 
 ---
 
 ### 🚀 V2rayN / V2rayNG / Shadowrocket 用户
-请复制以下链接粘贴到软件的“订阅设置”中：
+复制以下链接粘贴到软件的“订阅设置”中：
 {bt}text
-[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt)
+https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
 {bt}
 
 ---
@@ -67,14 +66,14 @@ def update_readme(raw_content):
 ## 🔗 原始动态链接信息
 
 * **TXT 文本订阅**：
-  {bt}text
-  [https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt)
-  {bt}
+{bt}text
+https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
+{bt}
 
 * **📌 当前抓取到的最新原始数据信息**：
-  {bt}text
-  {display_raw}
-  {bt}
+{bt}text
+{display_raw}
+{bt}
 
 ---
 
@@ -87,30 +86,13 @@ def update_readme(raw_content):
 
 def is_valid_sub_url(url):
     """精确判断提取出的 URL 是否为合法的订阅链接"""
-    url_lower = url.lower()
+    url_lower = url.lower().split("#")[0]
 
     if any(kw in url_lower for kw in EXCLUDE_KEYWORDS):
         return False
 
-    node_protocols = (
-        "vmess://",
-        "vless://",
-        "trojan://",
-        "ss://",
-        "ssr://",
-        "hysteria://",
-        "hysteria2://",
-        "hy2://",
-        "tuic://",
-    )
-    if url_lower.startswith(node_protocols):
-        return True
-
     if "yfamilys.com" in url_lower:
-        if not any(
-            k in url_lower
-            for k in ["token=", "sub", "subscribe", "download", "clash", "v2ray"]
-        ):
+        if not any(k in url_lower for k in ["token=", "sub=", "download", "clash", "v2ray"]):
             return False
 
     sub_features = [
@@ -230,7 +212,13 @@ def fetch_links():
         print("✅ v2ray.txt 本地 Base64 编码成功！")
 
     # 3. 转换生成 Clash 配置文件 (clash.yaml)
-    clash_target_url = extracted_content if is_single_url else RAW_LINKS_URL
+    # 使用 Data URI 方式传输给转换接口，避免直接依赖尚未来得及提交至 GitHub 的远程路径
+    if is_single_url:
+        clash_target_url = extracted_content
+    else:
+        b64_nodes = base64.b64encode(extracted_content.encode("utf-8")).decode("utf-8")
+        clash_target_url = f"data:text/plain;base64,{b64_nodes}"
+
     clash_content = convert_sub(scraper, "clash", clash_target_url)
 
     if clash_content:
