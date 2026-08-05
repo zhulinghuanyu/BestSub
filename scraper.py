@@ -37,6 +37,10 @@ DEFAULT_HEADERS = {
     "Accept-Language": "zh-CN,zh;q=0.9",
 }
 
+SUB_CLIENT_HEADERS = {
+    "User-Agent": "ClashMeta/v1.16.0 v2rayN/6.23"
+}
+
 # ===============================
 # 安全写文件
 # ===============================
@@ -118,14 +122,14 @@ def request_retry(scraper, url, **kwargs):
     raise Exception(f"请求失败:{url}")
 
 # ===============================
-# 判断订阅 URL (已修正字符串 Bug)
+# 判断订阅 URL
 # ===============================
 def is_valid_sub_url(url):
     clean_url = url.lower().split("#")[0]
     if any(x in clean_url for x in EXCLUDE_KEYWORDS):
         return False
     
-    if "yfamilys.com/subscribe/" in clean_url and clean_url != "https://yfamilys.com/subscribe/":
+    if "[yfamilys.com/subscribe/](https://yfamilys.com/subscribe/)" in clean_url and clean_url.rstrip('/') != "[https://yfamilys.com/subscribe](https://yfamilys.com/subscribe)":
         return True
     
     keys = ["sub", "token", "subscribe", "clash", "v2ray", "node", ".yaml", ".txt"]
@@ -202,11 +206,13 @@ def fetch_links():
         extracted = "\n".join(nodes)
         print(f"✅ 提取到 {len(nodes)} 个独立节点")
     else:
-        # 2. 匹配 yfamilys 专用动态订阅链接
+        # 2. 匹配 yfamilys 专用动态订阅链接（排除主页路径）
         pattern = r"https://yfamilys\.com/subscribe/[A-Za-z0-9_\-?=&]+"
-        result = re.findall(pattern, html_text)
-        if result:
-            extracted = result[0]
+        results = re.findall(pattern, html_text)
+        # 过滤掉末尾无 Token 的路径
+        valid_links = [r for r in results if r.rstrip('/') != "[https://yfamilys.com/subscribe](https://yfamilys.com/subscribe)"]
+        if valid_links:
+            extracted = valid_links[0]
             print("✅ 提取到动态订阅链接:", extracted)
         else:
             # 3. 备用 HTML 节点解析
@@ -225,15 +231,15 @@ def fetch_links():
     safe_write("links.txt", extracted)
 
     # -----------------------------
-    # V2Ray 节点更新逻辑（增强稳定性）
+    # V2Ray 节点更新逻辑
     # -----------------------------
     v2ray_content = None
     if extracted.startswith("http"):
-        # 优化：优先直连获取订阅链接返回的内容
+        # 优化：使用客户端 UA 直连获取订阅节点内容
         try:
             print("⬇️ 正在直连拉取 V2Ray 订阅节点...")
-            direct_res = scraper.get(extracted, headers=DEFAULT_HEADERS, timeout=15)
-            if direct_res.status_code == 200 and len(direct_res.text.strip()) > 30:
+            direct_res = scraper.get(extracted, headers=SUB_CLIENT_HEADERS, timeout=15)
+            if direct_res.status_code == 200 and len(direct_res.text.strip()) > 30 and "<html" not in direct_res.text.lower():
                 v2ray_content = direct_res.text.strip()
                 print("✅ 直连成功获取 V2Ray 内容")
         except Exception as e:
@@ -246,7 +252,8 @@ def fetch_links():
         if not v2ray_content:
             raise Exception("❌ V2Ray 内容获取及转换均失败")
             
-        safe_write("v2ray.txt", f"// Updated: {now}\n" + v2ray_content)
+        # 修复：保持内容纯净，不写入 // 注释头，保障客户端正常解析
+        safe_write("v2ray.txt", v2ray_content)
     else:
         # 如果抓到的是纯节点明文，直接 Base64 编码保存
         data = base64.b64encode(extracted.encode()).decode()
@@ -265,5 +272,6 @@ def fetch_links():
     # 更新 README
     update_readme(extracted)
     print("🎉 所有任务执行完成！")
+
 if __name__ == "__main__":
     fetch_links()
