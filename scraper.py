@@ -1,8 +1,8 @@
 import base64
 import html
+import os
 import re
 import time
-import os
 import cloudscraper
 from bs4 import BeautifulSoup
 
@@ -29,6 +29,11 @@ EXCLUDE_KEYWORDS = [
     "githubusercontent.com",
 ]
 
+DEFAULT_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept-Language": "zh-CN,zh;q=0.9",
+}
+
 # ===============================
 # 安全写文件
 # ===============================
@@ -39,29 +44,19 @@ def safe_write(filename, content):
     os.replace(tmp, filename)
 
 # ===============================
-# README
+# README 更新
 # ===============================
 def update_readme(raw_content):
     bt = "```"
-    update_time = time.strftime(
-        "%Y-%m-%d %H:%M:%S UTC",
-        time.gmtime()
-    )
+    update_time = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
+    
     if raw_content.startswith("http"):
         display = raw_content
     else:
-        count = len(
-            [
-                x for x in raw_content.splitlines()
-                if x.strip()
-            ]
-        )
-        display = (
-            f"已成功抓取 {count} 条节点"
-        )
-    content = f"""
-    
-# 🚀 BestSub 自动订阅更新
+        count = len([x for x in raw_content.splitlines() if x.strip()])
+        display = f"已成功抓取 {count} 条节点"
+
+    content = f"""# 🚀 BestSub 自动订阅更新
 自动抓取 yfamilys 最新订阅。
 自动转换：
 - Clash
@@ -95,106 +90,74 @@ https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt
 {bt}text
 {display}
 {bt}
-
 """
 
     old = ""
-
     if os.path.exists("README.md"):
-        with open(
-            "README.md",
-            encoding="utf-8"
-        ) as f:
+        with open("README.md", encoding="utf-8") as f:
             old = f.read()
+
     if old != content:
-        safe_write(
-            "README.md",
-            content
-        )
-        print(
-            "📝 README 更新"
-        )
+        safe_write("README.md", content)
+        print("📝 README 更新")
     else:
-        print(
-            "README 无变化"
-        )
+        print("README 无变化")
 
 # ===============================
 # 请求重试
 # ===============================
-def request_retry(
-        scraper,
-        url,
-        **kwargs
-):
+def request_retry(scraper, url, **kwargs):
     for i in range(3):
         try:
-            res = scraper.get(
-                url,
-                **kwargs
-            )
+            res = scraper.get(url, **kwargs)
             return res
         except Exception as e:
-            print(
-                f"请求失败 {i+1}/3:",
-                e
-            )
+            print(f"请求失败 {i+1}/3:", e)
             time.sleep(3)
-    raise Exception(
-        f"请求失败:{url}"
-    )
+    raise Exception(f"请求失败:{url}")
 
 # ===============================
-# 判断订阅URL
+# 判断订阅 URL
 # ===============================
 def is_valid_sub_url(url):
-    url = url.lower().split("#")[0]
-    if any(
-        x in url
-        for x in EXCLUDE_KEYWORDS
-    ):
+    clean_url = url.lower().split("#")[0]
+    if any(x in clean_url for x in EXCLUDE_KEYWORDS):
         return False
-    if "yfamilys.com/subscribe" in url:
+    # 避免误将不带路径的页面根地址识别为订阅链接
+    if "[yfamilys.com/subscribe/](https://yfamilys.com/subscribe/)" in clean_url and clean_url != "[https://yfamilys.com/subscribe/](https://yfamilys.com/subscribe/)":
         return True
-    keys = [
-        "sub",
-        "token",
-        "subscribe",
-        "clash",
-        "v2ray",
-        "node",
-        ".yaml",
-        ".txt",
-    ]
-    return any(
-        x in url
-        for x in keys
-    )
+    
+    keys = ["sub", "token", "subscribe", "clash", "v2ray", "node", ".yaml", ".txt"]
+    return any(x in clean_url for x in keys)
 
 # ===============================
 # 转换订阅
 # ===============================
-def convert_sub(
-        scraper,
-        target,
-        url
-):
+def convert_sub(scraper, target, raw_input):
     timestamp = int(time.time())
+    
+    # 【关键修复】：如果是节点列表而非 URL，使用 '|' 拼接节点作为 API 参数
+    if not raw_input.startswith("http"):
+        node_lines = [line.strip() for line in raw_input.splitlines() if line.strip()]
+        sub_param = "|".join(node_lines)
+    else:
+        sub_param = raw_input
+
     for api in SUB_APIS:
         try:
-            print(
-                f"🔄 {api} -> {target}"
-            )
+            print(f"🔄 {api} -> {target}")
             params = {
                 "target": target,
-                "url": url,
+                "url": sub_param,
                 "insert": "false",
                 "_t": timestamp,
             }
+            # 传入 DEFAULT_HEADERS 避免请求被转换服务器拦截
             res = request_retry(
                 scraper,
                 api,
                 params=params,
+                headers=DEFAULT_HEADERS,
                 timeout=30
             )
             if res.status_code != 200:
@@ -203,182 +166,94 @@ def convert_sub(
             if "<html" in text.lower():
                 continue
             if target == "clash":
-                if (
-                    "proxies:" in text
-                    and len(text) > 100
-                ):
+                if "proxies:" in text and len(text) > 100:
                     return text
             if target == "v2ray":
                 if len(text) > 50:
                     return text
         except Exception as e:
-            print(
-                "转换失败:",
-                e
-            )
+            print("转换失败:", e)
     return None
 
 # ===============================
 # 主抓取
 # ===============================
 def fetch_links():
-    print(
-        "🌐 请求 yfamilys..."
-    )
+    print("🌐 请求 yfamilys...")
     scraper = cloudscraper.create_scraper(
         browser={
-            "browser":"chrome",
-            "platform":"windows",
-            "desktop":True
+            "browser": "chrome",
+            "platform": "windows",
+            "desktop": True
         }
     )
-    headers = {
-        "User-Agent":
-        "Mozilla/5.0 Chrome/120",
-        "Accept-Language":
-        "zh-CN,zh;q=0.9"
-    }
+    
     response = request_retry(
         scraper,
         TARGET_URL,
-        headers=headers,
+        headers=DEFAULT_HEADERS,
         timeout=30
     )
     response.raise_for_status()
-    html_text = html.unescape(
-        response.text
-    )
+    html_text = html.unescape(response.text)
     extracted = None
 
-    # 节点
+    # 1. 匹配节点协议格式
     node_pattern = (
         r"(?:vmess|vless|trojan|ss|ssr|"
         r"hysteria|hysteria2|hy2|tuic)"
         r"://[^\s<\"'>]+"
     )
-    nodes = re.findall(
-        node_pattern,
-        html_text,
-        re.I
-    )
+    nodes = re.findall(node_pattern, html_text, re.I)
     if nodes:
-        nodes = list(
-            dict.fromkeys(nodes)
-        )
+        nodes = list(dict.fromkeys(nodes))
         extracted = "\n".join(nodes)
-        print(
-            f"找到 {len(nodes)} 节点"
-        )
+        print(f"找到 {len(nodes)} 个节点")
     else:
-
-        # yfamilys订阅
-        pattern = (
-            r"https://yfamilys\.com/subscribe/"
-            r"[A-Za-z0-9_\-?=&]+"
-        )
-        result = re.findall(
-            pattern,
-            html_text
-        )
+        # 2. 匹配 yfamilys 专用订阅链接格式
+        pattern = r"https://yfamilys\.com/subscribe/[A-Za-z0-9_\-?=&]+"
+        result = re.findall(pattern, html_text)
         if result:
             extracted = result[0]
-            print(
-                "找到订阅:",
-                extracted
-            )
+            print("找到订阅:", extracted)
         else:
-            soup = BeautifulSoup(
-                html_text,
-                "html.parser"
-            )
-            urls = [
-                a["href"]
-                for a in soup.find_all(
-                    "a",
-                    href=True
-                )
-            ]
-            urls += re.findall(
-                r"https?://[^\s<\"'>]+",
-                html_text
-            )
+            # 3. 备用页面链接解析
+            soup = BeautifulSoup(html_text, "html.parser")
+            urls = [a["href"] for a in soup.find_all("a", href=True)]
+            urls += re.findall(r"https?://[^\s<\"'>]+", html_text)
             for u in dict.fromkeys(urls):
                 if is_valid_sub_url(u):
                     extracted = u
                     break
+
     if not extracted:
-        raise Exception(
-            "没有找到有效订阅"
-        )
-    print(
-        "✅ 提取:",
-        extracted[:100]
-    )
-    now = time.strftime(
-        "%Y-%m-%d %H:%M:%S UTC",
-        time.gmtime()
-    )
-    safe_write(
-        "links.txt",
-        extracted
-    )
-    
-    # V2Ray
+        raise Exception("没有找到有效订阅")
+
+    print("✅ 提取成功:", extracted[:100])
+    now = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
+    safe_write("links.txt", extracted)
+
+    # V2Ray 转换与处理
     if extracted.startswith("http"):
-        v2ray = convert_sub(
-            scraper,
-            "v2ray",
-            extracted
-        )
+        v2ray = convert_sub(scraper, "v2ray", extracted)
         if not v2ray:
-            raise Exception(
-                "V2Ray转换失败"
-            )
-        safe_write(
-            "v2ray.txt",
-            f"// Updated: {now}\n"
-            + v2ray
-        )
+            raise Exception("V2Ray 转换失败")
+        safe_write("v2ray.txt", f"// Updated: {now}\n" + v2ray)
     else:
-        data = base64.b64encode(
-            extracted.encode()
-        ).decode()
-        safe_write(
-            "v2ray.txt",
-            data
-        )
-    print(
-        "✅ V2Ray完成"
-    )
-    
-    # Clash
-    clash = convert_sub(
-        scraper,
-        "clash",
-        extracted
-    )
+        data = base64.b64encode(extracted.encode()).decode()
+        safe_write("v2ray.txt", data)
+    print("✅ V2Ray 完成")
+
+    # Clash 转换与处理
+    clash = convert_sub(scraper, "clash", extracted)
     if not clash:
-        raise Exception(
-            "Clash转换失败"
-        )
-    safe_write(
-        "clash.yaml",
-        f"# Updated: {now}\n"
-        + clash
+        raise Exception("Clash 转换失败")
+    safe_write("clash.yaml", f"# Updated: {now}\n" + clash)
+    print("✅ Clash 完成")
 
-    )
-    print(
-        "✅ Clash完成"
-    )
-    
-    update_readme(
-        extracted
-    )
-
-    print(
-        "🎉 全部完成"
-    )
+    # README 更新
+    update_readme(extracted)
+    print("🎉 全部完成")
 
 if __name__ == "__main__":
-
     fetch_links()
