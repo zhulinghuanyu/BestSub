@@ -31,10 +31,9 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
 ## 当前抓取信息
 
 ```text
-https://yfamilys.com/subscribe/2iDZsspKiMWPlfoV9O37m8AlF
+https://yfamilys.com/subscribe/foRq-RHMHcG3ww8exebhyNjC2kMTjn-Q
 ```
 
 ---
 
 自动更新周期：15分钟
-
