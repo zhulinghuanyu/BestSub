@@ -1,39 +1,40 @@
-# 🚀 BestSub - 每日订阅链接自动更新
+# 🚀 BestSub - 自动订阅更新
 
-本项目**自动抓取**最新订阅节点并完成格式转换，请根据你使用的代理软件选择对应的订阅地址：
+本项目自动抓取 yfamilys 最新订阅，并自动转换 Clash / V2Ray 格式。
 
 ---
 
-## ⚡ 客户端订阅链接
+## Clash 用户
 
-### 🐱 Clash / Clash Verge / Stash 用户
-请复制以下链接粘贴到软件的“配置/订阅”中：
 ```text
-[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml)
+https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
 ```
 
 ---
 
-### 🚀 V2rayN / V2rayNG / Shadowrocket 用户
-请复制以下链接粘贴到软件的“订阅设置”中：
+## V2Ray 用户
+
 ```text
-[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt)
+https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
 ```
 
 ---
 
-## 🔗 原始动态链接信息
+## 原始订阅链接
 
-* **TXT 文本订阅**：
-  ```text
-  [https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt)
-  ```
-
-* **📌 当前抓取到的最新原始数据信息**：
-  ```text
-  https://yfamilys.com/subscribe/XQm0jEtkAoWSIT8zc55A4ypYu4zcKDcp
-  ```
+```text
+https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
+```
 
 ---
 
-💡 **提示**：系统会自动定期抓取并更新文件。如果遇到节点不可用，请在软件中手动点击“更新订阅”。
+## 当前抓取信息
+
+```text
+https://yfamilys.com/subscribe/2iDZsspKiMWPlfoV9O37m8AlF
+```
+
+---
+
+自动更新周期：15分钟
+
