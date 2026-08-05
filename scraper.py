@@ -1,9 +1,13 @@
 import base64
-from datetime import datetime, timezone, timedelta
-import html
-import os
+import json
 import re
 import time
+import html
+import os
+from datetime import datetime, timezone, timedelta
+from urllib.parse import urlparse, parse_qs, unquote
+
+import yaml
 import cloudscraper
 from bs4 import BeautifulSoup
 
@@ -14,6 +18,7 @@ BEIJING_TZ = timezone(timedelta(hours=8))
 SUB_APIS = [
     "https://api.v1.mk/sub",
     "https://url.v1.mk/sub",
+    "https://sub.id9.cc/sub",
 ]
 
 EXCLUDE_KEYWORDS = [
@@ -40,6 +45,8 @@ SUB_CLIENT_HEADERS = {
     "User-Agent": "v2rayN/6.23"
 }
 
+NODE_SCHEMES = ("vmess://", "ss://", "ssr://", "trojan://", "vless://", "hysteria2://", "hy2://", "tuic://")
+
 # ===============================
 # 安全写文件
 # ===============================
@@ -55,10 +62,231 @@ def safe_write(filename, content):
 TIME_COMMENT_RE = re.compile(r"^\s*(//|#).*\d{4}-\d{2}-\d{2}.*$", re.I)
 
 def strip_time_comments(content):
-    """去除 // Updated: 2026-xx-xx ... 或 # Updated: 2026-xx-xx ... 这类时间注释行，
-    只匹配"以 // 或 # 开头且包含日期"的行，不会误伤 base64 或 YAML 正文"""
     lines = [ln for ln in content.splitlines() if not TIME_COMMENT_RE.match(ln)]
     return "\n".join(lines).strip()
+
+# ===============================
+# 本地 Clash 转换工具
+# ===============================
+def b64d(s):
+    s = s.strip().replace("-", "+").replace("_", "/")
+    s += "=" * (-len(s) % 4)
+    return base64.b64decode(s)
+
+def _q(params, key, default=""):
+    v = params.get(key)
+    return v[0] if v else default
+
+def decode_node_lines(content):
+    """把 base64 或明文的订阅内容统一还原成节点 URI 列表"""
+    content = content.strip()
+    lines = [l.strip() for l in content.splitlines()
+             if l.strip() and not l.strip().startswith(("//", "#"))]
+    if any(l.lower().startswith(NODE_SCHEMES) for l in lines):
+        return [l for l in lines if l.lower().startswith(NODE_SCHEMES)]
+    try:
+        b64 = re.sub(r"\s+", "", content)
+        dec = b64d(b64).decode("utf-8")
+        dl = [l.strip() for l in dec.splitlines() if l.strip().lower().startswith(NODE_SCHEMES)]
+        if dl:
+            return dl
+    except Exception:
+        pass
+    return lines
+
+def parse_node(line, idx):
+    """把单条节点 URI 解析成 Clash(mihomo) 代理字典"""
+    line = line.strip()
+    if "://" not in line:
+        return None
+    scheme = line.split("://", 1)[0].lower()
+    p = urlparse(line)
+    name = unquote(p.fragment) if p.fragment else None
+
+    if scheme == "vmess":
+        body = line.split("://", 1)[1].split("#")[0]
+        data = json.loads(b64d(body).decode("utf-8"))
+        proxy = {
+            "name": data.get("ps") or name or f"vmess-{idx}",
+            "type": "vmess",
+            "server": data.get("add"),
+            "port": int(data.get("port", 443)),
+            "uuid": data.get("id"),
+            "alterId": int(data.get("aid", 0)),
+            "cipher": "auto",
+            "udp": True,
+        }
+        net = (data.get("net") or "tcp").lower()
+        if data.get("tls") == "tls":
+            proxy["tls"] = True
+            sni = data.get("sni") or data.get("host")
+            if sni:
+                proxy["servername"] = sni
+        if net == "ws":
+            proxy["network"] = "ws"
+            proxy["ws-opts"] = {"path": data.get("path") or "/",
+                                "headers": {"Host": data.get("host") or proxy["server"]}}
+        elif net == "grpc":
+            proxy["network"] = "grpc"
+            proxy["grpc-opts"] = {"grpc-service-name": data.get("path") or ""}
+        elif net == "h2":
+            proxy["network"] = "h2"
+            opts = {"path": data.get("path") or "/"}
+            if data.get("host"):
+                opts["host"] = [data["host"]]
+            proxy["h2-opts"] = opts
+        return proxy
+
+    if scheme == "ss":
+        body = line.split("://", 1)[1].split("#")[0]
+        if "@" in body:
+            userinfo, _, hostport = body.rpartition("@")
+            try:
+                dec = b64d(unquote(userinfo)).decode("utf-8")
+            except Exception:
+                dec = unquote(userinfo)
+            method, _, password = dec.partition(":")
+            host, _, port = hostport.rpartition(":")
+        else:
+            dec = b64d(body).decode("utf-8")
+            method, _, rest = dec.partition(":")
+            password, _, hostport = rest.partition("@")
+            host, _, port = hostport.rpartition(":")
+        if not (method and password and host and port):
+            return None
+        return {"name": name or f"ss-{idx}", "type": "ss", "server": host,
+                "port": int(port), "cipher": method, "password": password, "udp": True}
+
+    if scheme == "ssr":
+        dec = b64d(line.split("://", 1)[1]).decode("utf-8")
+        main, _, qs = dec.partition("/?")
+        host, port, protocol, method, obfs, pwd_b64 = main.split(":")
+        params = parse_qs(qs)
+        proxy = {
+            "name": b64d(_q(params, "remarks")).decode("utf-8") if _q(params, "remarks") else (name or f"ssr-{idx}"),
+            "type": "ssr", "server": host, "port": int(port), "cipher": method,
+            "password": b64d(pwd_b64).decode("utf-8"), "obfs": obfs, "protocol": protocol, "udp": True,
+        }
+        if _q(params, "obfsparam"):
+            proxy["obfs-param"] = b64d(_q(params, "obfsparam")).decode("utf-8")
+        if _q(params, "protoparam"):
+            proxy["protocol-param"] = b64d(_q(params, "protoparam")).decode("utf-8")
+        return proxy
+
+    if scheme == "trojan":
+        params = parse_qs(p.query)
+        proxy = {"name": name or f"trojan-{idx}", "type": "trojan", "server": p.hostname,
+                 "port": p.port or 443, "password": unquote(p.username or ""), "udp": True}
+        sni = _q(params, "sni") or _q(params, "peer")
+        if sni:
+            proxy["sni"] = sni
+        if _q(params, "allowInsecure") in ("1", "true", "True"):
+            proxy["skip-cert-verify"] = True
+        net = _q(params, "type", "tcp")
+        if net == "ws":
+            proxy["network"] = "ws"
+            proxy["ws-opts"] = {"path": _q(params, "path", "/"),
+                                "headers": {"Host": _q(params, "host", proxy["server"])}}
+        elif net == "grpc":
+            proxy["network"] = "grpc"
+            proxy["grpc-opts"] = {"grpc-service-name": _q(params, "serviceName", "")}
+        return proxy
+
+    if scheme == "vless":
+        params = parse_qs(p.query)
+        proxy = {"name": name or f"vless-{idx}", "type": "vless", "server": p.hostname,
+                 "port": p.port or 443, "uuid": unquote(p.username or ""), "udp": True}
+        security = _q(params, "security", "none")
+        if security in ("tls", "reality"):
+            proxy["tls"] = True
+            sni = _q(params, "sni")
+            if sni:
+                proxy["servername"] = sni
+            if security == "reality":
+                proxy["reality-opts"] = {"public-key": _q(params, "pbk"), "short-id": _q(params, "sid")}
+                fp = _q(params, "fp")
+                if fp:
+                    proxy["client-fingerprint"] = fp
+        flow = _q(params, "flow")
+        if flow:
+            proxy["flow"] = flow
+        net = _q(params, "type", "tcp")
+        if net == "ws":
+            proxy["network"] = "ws"
+            proxy["ws-opts"] = {"path": _q(params, "path", "/"),
+                                "headers": {"Host": _q(params, "host", proxy["server"])}}
+        elif net == "grpc":
+            proxy["network"] = "grpc"
+            proxy["grpc-opts"] = {"grpc-service-name": _q(params, "serviceName", "") or _q(params, "path", "")}
+        return proxy
+
+    if scheme in ("hysteria2", "hy2"):
+        params = parse_qs(p.query)
+        proxy = {"name": name or f"hy2-{idx}", "type": "hysteria2", "server": p.hostname,
+                 "port": p.port or 443, "password": unquote(p.username or ""), "udp": True}
+        sni = _q(params, "sni") or _q(params, "peer")
+        if sni:
+            proxy["sni"] = sni
+        if _q(params, "insecure") in ("1", "true"):
+            proxy["skip-cert-verify"] = True
+        obfs = _q(params, "obfs")
+        if obfs:
+            proxy["obfs"] = obfs
+            if _q(params, "obfs-password"):
+                proxy["obfs-password"] = _q(params, "obfs-password")
+        return proxy
+
+    if scheme == "tuic":
+        params = parse_qs(p.query)
+        proxy = {"name": name or f"tuic-{idx}", "type": "tuic", "server": p.hostname,
+                 "port": p.port or 443, "uuid": unquote(p.username or ""),
+                 "password": unquote(p.password or ""), "udp": True}
+        sni = _q(params, "sni")
+        if sni:
+            proxy["sni"] = sni
+        if _q(params, "insecure") in ("1", "true"):
+            proxy["skip-cert-verify"] = True
+        return proxy
+
+    return None
+
+def build_clash_yaml(node_lines):
+    """本地把节点列表转成 Clash YAML，彻底摆脱第三方转换 API"""
+    proxies, used = [], set()
+    for idx, line in enumerate(node_lines, 1):
+        try:
+            proxy = parse_node(line, idx)
+        except Exception as e:
+            print(f"⚠️ 解析节点失败，跳过: {e}")
+            continue
+        if not proxy or not proxy.get("server"):
+            continue
+        nm, n = proxy["name"], 1
+        while nm in used:
+            n += 1
+            nm = f"{proxy['name']} {n}"
+        proxy["name"] = nm
+        used.add(nm)
+        proxies.append(proxy)
+    if not proxies:
+        return None
+    names = [x["name"] for x in proxies]
+    config = {
+        "port": 7890,
+        "socks-port": 7891,
+        "allow-lan": False,
+        "mode": "rule",
+        "log-level": "info",
+        "proxies": proxies,
+        "proxy-groups": [
+            {"name": "🚀 节点选择", "type": "select", "proxies": ["♻️ 自动选择"] + names},
+            {"name": "♻️ 自动选择", "type": "url-test", "proxies": names,
+             "url": "http://www.gstatic.com/generate_204", "interval": 300},
+            {"name": "🐟 漏网之鱼", "type": "select", "proxies": ["🚀 节点选择", "♻️ 自动选择"]},
+        ],
+        "rules": ["GEOIP,LAN,DIRECT", "GEOIP,CN,DIRECT", "MATCH,🐟 漏网之鱼"],
+    }
+    return yaml.safe_dump(config, allow_unicode=True, sort_keys=False, default_flow_style=False)
 
 # ===============================
 # README 更新
@@ -103,7 +331,6 @@ https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt
 {display}
 {bt}
 """
-
     old = ""
     if os.path.exists("README.md"):
         with open("README.md", encoding="utf-8") as f:
@@ -141,7 +368,7 @@ def is_valid_sub_url(url):
     return any(x in clean_url for x in keys)
 
 # ===============================
-# 转换订阅
+# 转换订阅（在线 API）
 # ===============================
 def convert_sub(scraper, target, raw_input):
     timestamp = int(time.time())
@@ -153,24 +380,23 @@ def convert_sub(scraper, target, raw_input):
     for api in SUB_APIS:
         try:
             print(f"🔄 尝试转换 API: {api} -> {target}")
-            params = {
-                "target": target,
-                "url": sub_param,
-                "insert": "false",
-                "_t": timestamp,
-            }
+            params = {"target": target, "url": sub_param, "insert": "false", "_t": timestamp}
             res = scraper.get(api, params=params, headers=DEFAULT_HEADERS, timeout=30)
             if res.status_code != 200:
+                print(f"   ↳ 状态码异常: {res.status_code}")
                 continue
             text = res.text.strip()
             if "<html" in text.lower():
+                print("   ↳ 返回 HTML 错误页")
                 continue
             if target == "clash":
                 if "proxies:" in text and len(text) > 100:
                     return text
+                print("   ↳ 返回内容不含有效 proxies 配置")
             if target == "v2ray":
                 if len(text) > 50:
                     return text
+                print("   ↳ 返回内容过短")
         except Exception as e:
             print("API 转换异常:", e)
     return None
@@ -181,18 +407,9 @@ def convert_sub(scraper, target, raw_input):
 def fetch_links():
     print("🌐 请求 yfamilys 网页...")
     scraper = cloudscraper.create_scraper(
-        browser={
-            "browser": "chrome",
-            "platform": "windows",
-            "desktop": True
-        }
+        browser={"browser": "chrome", "platform": "windows", "desktop": True}
     )
-    response = request_retry(
-        scraper,
-        TARGET_URL,
-        headers=DEFAULT_HEADERS,
-        timeout=30
-    )
+    response = request_retry(scraper, TARGET_URL, headers=DEFAULT_HEADERS, timeout=30)
     html_text = html.unescape(response.text)
     extracted = None
     node_pattern = (
@@ -222,12 +439,14 @@ def fetch_links():
                     break
     if not extracted:
         raise Exception("❌ 未在页面中查找到有效节点或动态链接")
+
     safe_write("links.txt", extracted)
 
     # -----------------------------
     # V2Ray 节点更新逻辑
     # -----------------------------
     v2ray_content = None
+    node_lines = []
     if extracted.startswith("http"):
         try:
             print("⬇️ 正在直连拉取 V2Ray 订阅节点...")
@@ -248,15 +467,20 @@ def fetch_links():
         if not v2ray_content:
             raise Exception("❌ V2Ray 内容清洗后为空")
         safe_write("v2ray.txt", v2ray_content)
+        node_lines = decode_node_lines(v2ray_content)
     else:
         data = base64.b64encode(extracted.encode()).decode()
         safe_write("v2ray.txt", data)
+        node_lines = [l for l in extracted.splitlines() if l.strip()]
     print("✅ v2ray.txt 更新完成")
 
     # -----------------------------
-    # Clash 订阅更新逻辑
+    # Clash 订阅更新逻辑（在线 API 优先，本地转换兜底）
     # -----------------------------
     clash_content = convert_sub(scraper, "clash", extracted)
+    if not clash_content:
+        print("⚠️ 在线转换 API 全部失效，启用本地 Clash 转换...")
+        clash_content = build_clash_yaml(node_lines)
     if not clash_content:
         raise Exception("❌ Clash 配置转换失败")
     clash_content = strip_time_comments(clash_content)
@@ -265,7 +489,6 @@ def fetch_links():
     safe_write("clash.yaml", clash_content)
     print("✅ clash.yaml 更新完成")
 
-    # 更新 README
     update_readme(extracted)
     print("🎉 所有任务执行完成！")
 
