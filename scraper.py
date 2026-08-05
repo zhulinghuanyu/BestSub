@@ -1,4 +1,6 @@
+import html
 import re
+import time
 import cloudscraper
 from bs4 import BeautifulSoup
 
@@ -20,12 +22,18 @@ EXCLUDE_KEYWORDS = [
     "githubusercontent.com",
 ]
 
+# 备用转换 API 列表（解决单节点限流或缓存不更新问题）
+SUB_APIS = [
+    "https://api.v1.mk/sub",
+    "https://sub.id9.cc/sub",
+    "https://url.v1.mk/sub",
+]
+
 
 def update_readme(raw_content):
     """自动重写并更新 README.md 文件"""
     bt = "```"
 
-    # 判断 content 是单一 URL 还是多行节点
     if raw_content.startswith("http://") or raw_content.startswith("https://"):
         display_raw = raw_content
     else:
@@ -43,7 +51,7 @@ def update_readme(raw_content):
 ### 🐱 Clash / Clash Verge / Stash 用户
 请复制以下链接粘贴到软件的“配置/订阅”中：
 {bt}text
-https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
+[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml)
 {bt}
 
 ---
@@ -51,7 +59,7 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
 ### 🚀 V2rayN / V2rayNG / Shadowrocket 用户
 请复制以下链接粘贴到软件的“订阅设置”中：
 {bt}text
-https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
+[https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt)
 {bt}
 
 ---
@@ -60,7 +68,7 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
 
 * **TXT 文本订阅**：
   {bt}text
-  https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
+  [https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt](https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt)
   {bt}
 
 * **📌 当前抓取到的最新原始数据信息**：
@@ -91,8 +99,10 @@ def is_valid_sub_url(url):
         "trojan://",
         "ss://",
         "ssr://",
+        "hysteria://",
         "hysteria2://",
         "hy2://",
+        "tuic://",
     )
     if url_lower.startswith(node_protocols):
         return True
@@ -119,6 +129,34 @@ def is_valid_sub_url(url):
     return any(feat in url_lower for feat in sub_features)
 
 
+def convert_sub(scraper, target, url_param):
+    """通用订阅转换函数，包含时间戳防缓存与多节点容错机制"""
+    timestamp = int(time.time())
+
+    for api in SUB_APIS:
+        try:
+            params = {
+                "target": target,
+                "url": url_param,
+                "insert": "false",
+                "_t": timestamp,  # 传入当前时间戳破除转换站点的服务器缓存
+            }
+            print(f"🔄 正在尝试通过 {api} 生成 {target} 格式...")
+            res = scraper.get(api, params=params, timeout=25)
+
+            if res.status_code == 200:
+                text = res.text
+                if target == "clash" and ("proxies:" in text or "proxy-groups:" in text):
+                    return text
+                elif target == "v2ray" and len(text.strip()) > 20:
+                    return text
+        except Exception as e:
+            print(f"⚠️ 转换节点 {api} 响应失败: {e}")
+            continue
+
+    return None
+
+
 def fetch_links():
     print("🌐 正在请求目标页面...")
     scraper = cloudscraper.create_scraper(
@@ -132,7 +170,8 @@ def fetch_links():
     try:
         response = scraper.get(TARGET_URL, timeout=30)
         response.encoding = response.apparent_encoding or "utf-8"
-        html_text = response.text
+        # 进行 HTML 反转义处理，防止 &amp; 导致 URL 损坏
+        html_text = html.unescape(response.text)
     except Exception as e:
         print(f"❌ 网页请求失败: {e}")
         return
@@ -141,29 +180,28 @@ def fetch_links():
     api_url_param = None      # 用于提交给 subconverter API 的 url 参数
 
     if html_text:
-        # 第一优先级：匹配明文节点列表 (vmess, vless, trojan 等)
-        node_pattern = r"(?:vmess|vless|trojan|ss|ssr|hysteria2|hy2)://[^\s<\"'>]+"
+        # 第一优先级：匹配明文节点列表
+        node_pattern = r"(?:vmess|vless|trojan|ss|ssr|hysteria|hysteria2|hy2|tuic)://[^\s<\"'>]+"
         node_matches = re.findall(node_pattern, html_text, re.IGNORECASE)
 
         if node_matches:
+            # 保持顺序去重
+            node_matches = list(dict.fromkeys(node_matches))
             extracted_content = "\n".join(node_matches)
-            # 关键修改：传给 Subconverter API 时多条节点需用竖线 "|" 分隔
-            api_url_param = "|".join(node_matches)
+            # 传给 API 时用 | 分隔，限制最大前 200 条节点防止 URL 溢出
+            api_url_param = "|".join(node_matches[:200])
             print(f"✅ 成功提取到 {len(node_matches)} 条节点数据！")
         else:
-            # 第二优先级：匹配动态订阅 URL（先解析 HTML 标签，再匹配文本）
+            # 第二优先级：匹配动态订阅 URL
             soup = BeautifulSoup(html_text, "html.parser")
             candidate_urls = []
 
-            # 从 a 标签提取 href
             for a in soup.find_all("a", href=True):
                 candidate_urls.append(a["href"].strip())
 
-            # 补充正则捕获文本中的 URL
             raw_url_pattern = r"https?://[^\s<\"'>]+"
             candidate_urls.extend(re.findall(raw_url_pattern, html_text))
 
-            # 去重并筛选有效链接
             for url in list(dict.fromkeys(candidate_urls)):
                 if url.rstrip("/") == TARGET_URL.rstrip("/"):
                     continue
@@ -183,38 +221,22 @@ def fetch_links():
         f.write(extracted_content)
 
     # 2. 转换生成 Clash 配置文件
-    try:
-        print("🔄 正在生成 Clash 配置文件...")
-        sub_api = "https://api.v1.mk/sub"
-        params = {"target": "clash", "url": api_url_param, "insert": "false"}
-        res_clash = scraper.get(sub_api, params=params, timeout=30)
-
-        if res_clash.status_code == 200 and (
-            "proxies:" in res_clash.text or "proxy-groups:" in res_clash.text
-        ):
-            with open("clash.yaml", "w", encoding="utf-8") as f:
-                f.write(res_clash.text)
-            print("✅ clash.yaml 生成成功！")
-        else:
-            print("⚠️ Clash 转换返回数据无效，取消覆盖现有配置文件")
-    except Exception as e:
-        print(f"⚠️ Clash 格式转换失败: {e}")
+    clash_content = convert_sub(scraper, "clash", api_url_param)
+    if clash_content:
+        with open("clash.yaml", "w", encoding="utf-8") as f:
+            f.write(clash_content)
+        print("✅ clash.yaml 生成成功！")
+    else:
+        print("⚠️ 所有转换接口均未返回有效数据，保留现有 clash.yaml")
 
     # 3. 转换生成 V2ray 专属订阅文件 (v2ray.txt)
-    try:
-        print("🔄 正在生成 V2ray 订阅格式...")
-        sub_api = "https://api.v1.mk/sub"
-        params = {"target": "v2ray", "url": api_url_param}
-        res_v2ray = scraper.get(sub_api, params=params, timeout=30)
-
-        if res_v2ray.status_code == 200 and len(res_v2ray.text.strip()) > 20:
-            with open("v2ray.txt", "w", encoding="utf-8") as f:
-                f.write(res_v2ray.text)
-            print("✅ v2ray.txt 生成成功！")
-        else:
-            print("⚠️ V2ray 转换返回数据为空，取消覆盖现有配置文件")
-    except Exception as e:
-        print(f"⚠️ V2ray 格式转换失败: {e}")
+    v2ray_content = convert_sub(scraper, "v2ray", api_url_param)
+    if v2ray_content:
+        with open("v2ray.txt", "w", encoding="utf-8") as f:
+            f.write(v2ray_content)
+        print("✅ v2ray.txt 生成成功！")
+    else:
+        print("⚠️ 所有转换接口均未返回有效数据，保留现有 v2ray.txt")
 
     # 4. 自动写入/更新 README.md
     update_readme(extracted_content)
