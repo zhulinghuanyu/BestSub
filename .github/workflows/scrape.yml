@@ -44,7 +44,6 @@ jobs:
         run: |
           echo "===== Git 状态 ====="
           git status
-
           echo "===== 文件列表 ====="
           ls -lh *.txt *.yaml 2>/dev/null || true
 
@@ -52,8 +51,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add .
+          git add README.md links.txt v2ray.txt clash.yaml
 
           if git diff --cached --quiet; then
             echo "没有变化"
@@ -61,5 +59,4 @@ jobs:
           fi
 
           git commit -m "Auto update subscribe links"
-
           git push origin HEAD:${{ github.ref_name }}
