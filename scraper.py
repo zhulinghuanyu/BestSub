@@ -49,7 +49,7 @@ def update_readme(raw_content):
 
 ---
 
-## Clash 用户
+## Clash订阅链接
 
 {bt}text
 https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
@@ -57,7 +57,7 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
 
 ---
 
-## V2Ray 用户
+## V2Ray订阅链接
 
 {bt}text
 https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
