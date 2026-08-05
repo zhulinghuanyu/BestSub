@@ -1,39 +1,37 @@
-# 🚀 BestSub - 自动订阅更新
 
-本项目自动抓取 yfamilys 最新订阅，并自动转换 Clash / V2Ray 格式。
+    
+# 🚀 BestSub 自动订阅更新
+自动抓取 yfamilys 最新订阅。
+自动转换：
+- Clash
+- V2Ray
 
 ---
 
-## Clash订阅链接
-
+## Clash订阅
 ```text
-https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/clash.yaml
+https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/clash.yaml
+```
+
+## V2Ray订阅
+```text
+https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/v2ray.txt
+```
+
+## 原始订阅
+```text
+https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt
 ```
 
 ---
 
-## V2Ray订阅链接
-
+更新时间:
 ```text
-https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/v2ray.txt
+2026-08-05 03:33:26 UTC
 ```
 
----
-
-## 原始订阅链接
-
+当前状态:
 ```text
-https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
+https://yfamilys.com/subscribe/wxAEa-ehdUzonsgU8u8WKwBTb6ayqREh
 ```
 
----
-
-## 当前抓取信息
-
-```text
-https://yfamilys.com/subscribe/IEPQEY6A-B7CdaNix0lZVxfBUWnxDNcO
-```
-
----
-
-自动更新周期：15分钟
