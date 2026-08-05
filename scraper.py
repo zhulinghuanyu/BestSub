@@ -26,7 +26,6 @@ EXCLUDE_KEYWORDS = [
 # 在线订阅转换接口
 SUB_APIS = [
     "https://api.v1.mk/sub",
-    "https://sub.id9.cc/sub",
     "https://url.v1.mk/sub",
 ]
 
