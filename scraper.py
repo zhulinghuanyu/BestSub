@@ -1,4 +1,5 @@
 import base64
+from datetime import datetime, timezone, timedelta
 import html
 import os
 import re
@@ -7,6 +8,9 @@ import cloudscraper
 from bs4 import BeautifulSoup
 
 TARGET_URL = "https://yfamilys.com/subscribe"
+
+# 定义北京时间时区 (UTC+8)
+BEIJING_TZ = timezone(timedelta(hours=8))
 
 SUB_APIS = [
     "https://api.v1.mk/sub",
@@ -48,7 +52,8 @@ def safe_write(filename, content):
 # ===============================
 def update_readme(raw_content):
     bt = "```"
-    update_time = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
+    # 获取北京时间 (UTC+8)
+    update_time = datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M:%S (UTC+8)")
     
     if raw_content.startswith("http"):
         display = raw_content
@@ -66,17 +71,17 @@ def update_readme(raw_content):
 
 ## Clash订阅
 {bt}text
-https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/clash.yaml
+[https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/clash.yaml](https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/clash.yaml)
 {bt}
 
 ## V2Ray订阅
 {bt}text
-https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/v2ray.txt
+[https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/v2ray.txt](https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/v2ray.txt)
 {bt}
 
 ## 原始订阅
 {bt}text
-https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt
+[https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt](https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt)
 {bt}
 
 ---
@@ -136,7 +141,7 @@ def is_valid_sub_url(url):
 def convert_sub(scraper, target, raw_input):
     timestamp = int(time.time())
     
-    # 【关键修复】：如果是节点列表而非 URL，使用 '|' 拼接节点作为 API 参数
+    # 如果是节点列表而非 URL，使用 '|' 拼接节点作为 API 参数
     if not raw_input.startswith("http"):
         node_lines = [line.strip() for line in raw_input.splitlines() if line.strip()]
         sub_param = "|".join(node_lines)
@@ -152,7 +157,6 @@ def convert_sub(scraper, target, raw_input):
                 "insert": "false",
                 "_t": timestamp,
             }
-            # 传入 DEFAULT_HEADERS 避免请求被转换服务器拦截
             res = request_retry(
                 scraper,
                 api,
@@ -230,7 +234,9 @@ def fetch_links():
         raise Exception("没有找到有效订阅")
 
     print("✅ 提取成功:", extracted[:100])
-    now = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
+    
+    # 获取北京时间 (UTC+8)
+    now = datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M:%S (UTC+8)")
     safe_write("links.txt", extracted)
 
     # V2Ray 转换与处理
