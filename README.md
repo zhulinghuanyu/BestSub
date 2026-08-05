@@ -31,7 +31,7 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
 ## 当前抓取信息
 
 ```text
-https://yfamilys.com/subscribe/foRq-RHMHcG3ww8exebhyNjC2kMTjn-Q
+https://yfamilys.com/subscribe/CQlajkJ1sCw-vAkA0xEFTPSpkfT2lZyD
 ```
 
 ---
