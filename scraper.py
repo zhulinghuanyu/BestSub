@@ -23,12 +23,16 @@ EXCLUDE_KEYWORDS = [
     "githubusercontent.com",
 ]
 
+# 在线订阅转换接口
 SUB_APIS = [
     "https://api.v1.mk/sub",
     "https://url.v1.mk/sub",
     "https://sub.id9.cc/sub",
 ]
 
+# ===============================
+# 更新 README
+# ===============================
 def update_readme(raw_content):
     bt = "```"
     if raw_content.startswith("http://") or raw_content.startswith("https://"):
@@ -91,7 +95,9 @@ https://github.com/zhulinghuanyu/BestSub/raw/refs/heads/main/links.txt
         f.write(readme_content)
     print("📝 README 更新完成")
 
-
+# ===============================
+# 判断订阅链接
+# ===============================
 def is_valid_sub_url(url):
     url_lower = url.lower().split("#")[0]
 
@@ -107,7 +113,9 @@ def is_valid_sub_url(url):
     ]
     return any(x in url_lower for x in features)
 
-
+# ===============================
+# 在线转换
+# ===============================
 def convert_sub(scraper, target, target_url):
     timestamp = int(time.time())
     
@@ -133,7 +141,9 @@ def convert_sub(scraper, target, target_url):
             print(f"转换节点 {api} 失败:", e)
     return None
 
-
+# ===============================
+# 抓取主程序
+# ===============================
 def fetch_links():
     print("🌐 请求 yfamilys...")
     scraper = cloudscraper.create_scraper(
@@ -171,7 +181,7 @@ def fetch_links():
         extracted_content = "\n".join(node_matches)
         print(f"找到 {len(node_matches)} 个节点")
     else:
-        # 2. 匹配 yfamilys 动态订阅链接（已修复字符匹配 Bug，允许中划线和下划线）
+        # 2. 匹配 yfamilys 动态订阅链接
         yf_pattern = r"https://yfamilys\.com/subscribe/[A-Za-z0-9_-]+"
         yf = re.findall(yf_pattern, html_text)
         if yf:
@@ -197,16 +207,23 @@ def fetch_links():
     print("✅ 提取成功:", extracted_content[:100])
     is_url = extracted_content.startswith("http://") or extracted_content.startswith("https://")
 
+    # 当前时间戳，用于写入文件顶部触发 Git 提交变动
+    now_str = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
+
     # 保存原始提取内容
     with open("links.txt", "w", encoding="utf-8") as f:
         f.write(extracted_content)
 
+    # ==========================
     # 生成 V2Ray 格式
+    # ==========================
     if is_url:
         v2ray = convert_sub(scraper, "v2ray", extracted_content)
         if v2ray:
+            # 在顶部加入时间戳注释，确保文本发生改动
+            v2ray_content = f"// Updated at: {now_str}\n" + v2ray
             with open("v2ray.txt", "w", encoding="utf-8") as f:
-                f.write(v2ray)
+                f.write(v2ray_content)
             print("✅ v2ray 转换完成")
     else:
         data = base64.b64encode(extracted_content.encode('utf-8')).decode('utf-8')
@@ -214,11 +231,15 @@ def fetch_links():
             f.write(data)
         print("✅ v2ray 节点Base64编码完成")
 
+    # ==========================
     # 生成 Clash 格式
+    # ==========================
     clash = convert_sub(scraper, "clash", extracted_content)
     if clash:
+        # 在 YAML 顶部加入时间戳注释，确保文本发生改动
+        clash_content = f"# Updated at: {now_str}\n" + clash
         with open("clash.yaml", "w", encoding="utf-8") as f:
-            f.write(clash)
+            f.write(clash_content)
         print("✅ clash 转换完成")
     else:
         print("⚠️ clash 转换失败")
