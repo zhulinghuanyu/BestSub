@@ -442,10 +442,11 @@ def fetch_links():
     safe_write("links.txt", extracted)
 
     # -----------------------------
-    # V2Ray 节点更新逻辑
+    # V2Ray 节点更新逻辑 (标准 Base64 格式)
     # -----------------------------
     v2ray_content = None
     node_lines = []
+    
     if extracted.startswith("http"):
         try:
             print("⬇️ 正在直连拉取 V2Ray 订阅节点...")
@@ -458,20 +459,32 @@ def fetch_links():
                 print("✅ 直连成功获取 V2Ray 内容")
         except Exception as e:
             print(f"⚠️ 直连拉取失败，尝试通过 API 转换: {e}")
+            
         if not v2ray_content:
             v2ray_content = convert_sub(scraper, "v2ray", extracted)
+            
         if not v2ray_content:
             raise Exception("❌ V2Ray 内容获取及转换均失败")
+            
         v2ray_content = strip_time_comments(v2ray_content)
         if not v2ray_content:
             raise Exception("❌ V2Ray 内容清洗后为空")
-        safe_write("v2ray.txt", v2ray_content)
+            
         node_lines = decode_node_lines(v2ray_content)
     else:
-        data = base64.b64encode(extracted.encode()).decode()
-        safe_write("v2ray.txt", data)
-        node_lines = [l for l in extracted.splitlines() if l.strip()]
-    print("✅ v2ray.txt 更新完成")
+        node_lines = [l for l in extracted.splitlines() if l.strip() and l.strip().lower().startswith(NODE_SCHEMES)]
+        if not node_lines: 
+            node_lines = [l for l in extracted.splitlines() if l.strip()]
+
+    if not node_lines:
+        raise Exception("❌ 未提取到有效的 V2Ray 节点")
+        
+    raw_nodes_text = "\n".join([line for line in node_lines if line.strip()])
+    
+    b64_v2ray = base64.b64encode(raw_nodes_text.encode("utf-8")).decode("utf-8")
+    
+    safe_write("v2ray.txt", b64_v2ray)
+    print("✅ v2ray.txt 更新完成 (标准单行 Base64 格式)")
 
     # -----------------------------
     # Clash 订阅更新逻辑（在线 API 优先，本地转换兜底）
@@ -479,12 +492,16 @@ def fetch_links():
     clash_content = convert_sub(scraper, "clash", extracted)
     if not clash_content:
         print("⚠️ 在线转换 API 全部失效，启用本地 Clash 转换...")
+        # 此时 node_lines 已经是纯净的节点列表，直接传入本地转换函数
         clash_content = build_clash_yaml(node_lines)
+        
     if not clash_content:
         raise Exception("❌ Clash 配置转换失败")
+        
     clash_content = strip_time_comments(clash_content)
     if not clash_content:
         raise Exception("❌ Clash 配置清洗后为空")
+        
     safe_write("clash.yaml", clash_content)
     print("✅ clash.yaml 更新完成")
 
