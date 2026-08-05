@@ -1,5 +1,3 @@
-
-    
 # 🚀 BestSub 自动订阅更新
 自动抓取 yfamilys 最新订阅。
 自动转换：
@@ -27,11 +25,10 @@ https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt
 
 更新时间:
 ```text
-2026-08-05 03:33:26 UTC
+2026-08-05 05:12:03 UTC
 ```
 
 当前状态:
 ```text
-https://yfamilys.com/subscribe/wxAEa-ehdUzonsgU8u8WKwBTb6ayqREh
+https://yfamilys.com/subscribe/zAZRxl0UHTZOv2VnK2bXTcNo8mBO3n5i
 ```
-
