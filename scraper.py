@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 
 TARGET_URL = "https://yfamilys.com/subscribe"
 
-# 定义北京时间时区 (UTC+8)
 BEIJING_TZ = timezone(timedelta(hours=8))
 
 SUB_APIS = [
@@ -52,7 +51,6 @@ def safe_write(filename, content):
 # ===============================
 def update_readme(raw_content):
     bt = "```"
-    # 获取北京时间 (UTC+8)
     update_time = datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M:%S (UTC+8)")
     
     if raw_content.startswith("http"):
@@ -112,21 +110,22 @@ def request_retry(scraper, url, **kwargs):
     for i in range(3):
         try:
             res = scraper.get(url, **kwargs)
-            return res
+            if res.status_code == 200:
+                return res
         except Exception as e:
             print(f"请求失败 {i+1}/3:", e)
             time.sleep(3)
     raise Exception(f"请求失败:{url}")
 
 # ===============================
-# 判断订阅 URL
+# 判断订阅 URL (已修正字符串 Bug)
 # ===============================
 def is_valid_sub_url(url):
     clean_url = url.lower().split("#")[0]
     if any(x in clean_url for x in EXCLUDE_KEYWORDS):
         return False
-    # 避免误将不带路径的页面根地址识别为订阅链接
-    if "[yfamilys.com/subscribe/](https://yfamilys.com/subscribe/)" in clean_url and clean_url != "[https://yfamilys.com/subscribe/](https://yfamilys.com/subscribe/)":
+    
+    if "yfamilys.com/subscribe/" in clean_url and clean_url != "https://yfamilys.com/subscribe/":
         return True
     
     keys = ["sub", "token", "subscribe", "clash", "v2ray", "node", ".yaml", ".txt"]
@@ -138,7 +137,6 @@ def is_valid_sub_url(url):
 def convert_sub(scraper, target, raw_input):
     timestamp = int(time.time())
     
-    # 如果是节点列表而非 URL，使用 '|' 拼接节点作为 API 参数
     if not raw_input.startswith("http"):
         node_lines = [line.strip() for line in raw_input.splitlines() if line.strip()]
         sub_param = "|".join(node_lines)
@@ -147,20 +145,14 @@ def convert_sub(scraper, target, raw_input):
 
     for api in SUB_APIS:
         try:
-            print(f"🔄 {api} -> {target}")
+            print(f"🔄 尝试转换 API: {api} -> {target}")
             params = {
                 "target": target,
                 "url": sub_param,
                 "insert": "false",
                 "_t": timestamp,
             }
-            res = request_retry(
-                scraper,
-                api,
-                params=params,
-                headers=DEFAULT_HEADERS,
-                timeout=30
-            )
+            res = scraper.get(api, params=params, headers=DEFAULT_HEADERS, timeout=30)
             if res.status_code != 200:
                 continue
             text = res.text.strip()
@@ -173,14 +165,14 @@ def convert_sub(scraper, target, raw_input):
                 if len(text) > 50:
                     return text
         except Exception as e:
-            print("转换失败:", e)
+            print("API 转换异常:", e)
     return None
 
 # ===============================
-# 主抓取
+# 主抓取逻辑
 # ===============================
 def fetch_links():
-    print("🌐 请求 yfamilys...")
+    print("🌐 请求 yfamilys 网页...")
     scraper = cloudscraper.create_scraper(
         browser={
             "browser": "chrome",
@@ -195,11 +187,10 @@ def fetch_links():
         headers=DEFAULT_HEADERS,
         timeout=30
     )
-    response.raise_for_status()
     html_text = html.unescape(response.text)
     extracted = None
 
-    # 1. 匹配节点协议格式
+    # 1. 优先匹配节点协议格式
     node_pattern = (
         r"(?:vmess|vless|trojan|ss|ssr|"
         r"hysteria|hysteria2|hy2|tuic)"
@@ -209,16 +200,16 @@ def fetch_links():
     if nodes:
         nodes = list(dict.fromkeys(nodes))
         extracted = "\n".join(nodes)
-        print(f"找到 {len(nodes)} 个节点")
+        print(f"✅ 提取到 {len(nodes)} 个独立节点")
     else:
-        # 2. 匹配 yfamilys 专用订阅链接格式
+        # 2. 匹配 yfamilys 专用动态订阅链接
         pattern = r"https://yfamilys\.com/subscribe/[A-Za-z0-9_\-?=&]+"
         result = re.findall(pattern, html_text)
         if result:
             extracted = result[0]
-            print("找到订阅:", extracted)
+            print("✅ 提取到动态订阅链接:", extracted)
         else:
-            # 3. 备用页面链接解析
+            # 3. 备用 HTML 节点解析
             soup = BeautifulSoup(html_text, "html.parser")
             urls = [a["href"] for a in soup.find_all("a", href=True)]
             urls += re.findall(r"https?://[^\s<\"'>]+", html_text)
@@ -228,35 +219,51 @@ def fetch_links():
                     break
 
     if not extracted:
-        raise Exception("没有找到有效订阅")
+        raise Exception("❌ 未在页面中查找到有效节点或动态链接")
 
-    print("✅ 提取成功:", extracted[:100])
-    
-    # 获取北京时间 (UTC+8)
     now = datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M:%S (UTC+8)")
     safe_write("links.txt", extracted)
 
-    # V2Ray 转换与处理
+    # -----------------------------
+    # V2Ray 节点更新逻辑（增强稳定性）
+    # -----------------------------
+    v2ray_content = None
     if extracted.startswith("http"):
-        v2ray = convert_sub(scraper, "v2ray", extracted)
-        if not v2ray:
-            raise Exception("V2Ray 转换失败")
-        safe_write("v2ray.txt", f"// Updated: {now}\n" + v2ray)
+        # 优化：优先直连获取订阅链接返回的内容
+        try:
+            print("⬇️ 正在直连拉取 V2Ray 订阅节点...")
+            direct_res = scraper.get(extracted, headers=DEFAULT_HEADERS, timeout=15)
+            if direct_res.status_code == 200 and len(direct_res.text.strip()) > 30:
+                v2ray_content = direct_res.text.strip()
+                print("✅ 直连成功获取 V2Ray 内容")
+        except Exception as e:
+            print(f"⚠️ 直连拉取失败，尝试通过 API 转换: {e}")
+
+        # 若直连失败则尝试 API 转换
+        if not v2ray_content:
+            v2ray_content = convert_sub(scraper, "v2ray", extracted)
+            
+        if not v2ray_content:
+            raise Exception("❌ V2Ray 内容获取及转换均失败")
+            
+        safe_write("v2ray.txt", f"// Updated: {now}\n" + v2ray_content)
     else:
+        # 如果抓到的是纯节点明文，直接 Base64 编码保存
         data = base64.b64encode(extracted.encode()).decode()
         safe_write("v2ray.txt", data)
-    print("✅ V2Ray 完成")
+    print("✅ v2ray.txt 更新完成")
 
-    # Clash 转换与处理
-    clash = convert_sub(scraper, "clash", extracted)
-    if not clash:
-        raise Exception("Clash 转换失败")
-    safe_write("clash.yaml", f"# Updated: {now}\n" + clash)
-    print("✅ Clash 完成")
+    # -----------------------------
+    # Clash 订阅更新逻辑
+    # -----------------------------
+    clash_content = convert_sub(scraper, "clash", extracted)
+    if not clash_content:
+        raise Exception("❌ Clash 配置转换失败")
+    safe_write("clash.yaml", f"# Updated: {now}\n" + clash_content)
+    print("✅ clash.yaml 更新完成")
 
-    # README 更新
+    # 更新 README
     update_readme(extracted)
-    print("🎉 全部完成")
-
+    print("🎉 所有任务执行完成！")
 if __name__ == "__main__":
     fetch_links()
