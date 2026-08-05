@@ -14,7 +14,6 @@ BEIJING_TZ = timezone(timedelta(hours=8))
 SUB_APIS = [
     "https://api.v1.mk/sub",
     "https://url.v1.mk/sub",
-    "https://sub.id9.cc/sub",
 ]
 
 EXCLUDE_KEYWORDS = [
