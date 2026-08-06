@@ -2,7 +2,7 @@ name: Auto Scrape Data
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  
+    - cron: '3-59/12 * * * *'
   workflow_dispatch:
 
 concurrency:
@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: 检出代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 设置 Python 环境
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.10"
           cache: "pip"
