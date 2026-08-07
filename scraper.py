@@ -13,17 +13,12 @@ from bs4 import BeautifulSoup
 TARGET_URL = "https://yfamilys.com/subscribe"
 BEIJING_TZ = timezone(timedelta(hours=8))
 SUB_APIS = [
-    "https://api.v1.mk/sub",
-    "https://url.v1.mk/sub",
-    "https://sub.d1.mk/sub",
-    "https://sub.xeton.dev/sub",
-    "https://sub.xeton.de/sub",
-    "https://subapi.cmliussss.net/sub",
-    "https://subapi.fxxk.dedyn.io/sub",
-    "https://api.dler.io/sub",
-    "https://sub.dlsj.me/sub",
-    "https://api.wcc.best/sub",
-    "https://www.nameless13.com/sub",
+     "https://api.v1.mk/sub",
+     "https://url.v1.mk/sub",
+     "https://sub.xeton.dev/sub",
+     "https://subapi.cmliussss.net/sub",
+     "https://subapi.fxxk.dedyn.io/sub",
+     "https://api.dler.io/sub"
 ]
 EXCLUDE_KEYWORDS = [
     "cloudflareinsights.com",
