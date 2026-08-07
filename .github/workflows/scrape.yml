@@ -2,7 +2,7 @@ name: Auto Scrape Data
 
 on:
   schedule:
-    - cron: '3-59/12 * * * *'
+    - cron: '3-59/12 * * * *'   # 每 12 分钟（可按需调整）
   workflow_dispatch:
 
 concurrency:
@@ -14,13 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: 检出代码
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: 设置 Python 环境
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "3.10"
           cache: "pip"
@@ -34,7 +33,7 @@ jobs:
         run: python scraper.py
 
       - name: 提交并推送更新
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Auto update subscribe links [skip ci]"
           branch: ${{ github.ref_name }}
