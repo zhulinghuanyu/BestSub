@@ -1,5 +1,5 @@
 # 🚀 BestSub 自动订阅更新
-自动抓取 yfamilys 最新订阅，转换：Clash / V2Ray。
+自动抓取 yfamilys 最新订阅。
 ---
 ## Clash订阅
 ```text
@@ -16,9 +16,9 @@ https://raw.githubusercontent.com/zhulinghuanyu/BestSub/main/links.txt
 ---
 更新时间:
 ```text
-2026-08-11 07:58:24 (UTC+8)
+2026-08-11 09:11:03 (UTC+8)
 ```
 当前状态:
 ```text
-https://yfamilys.com/subscribe/STkN0qpu48vCHQDSMD92Qh5Zf0TtkBqx
+https://yfamilys.com/subscribe/TOZ3YnkCErV3wuF8j4Ih1SZS3yy62tBu
 ```
