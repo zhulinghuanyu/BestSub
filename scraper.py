@@ -59,7 +59,6 @@ def safe_write(filename, content):
 # 清洗时间戳注释行
 # ===============================
 TIME_COMMENT_RE = re.compile(r"^\s*(//|#).*\d{4}-\d{2}-\d{2}.*$", re.I)
-
 def strip_time_comments(content):
     lines = [ln for ln in content.splitlines() if not TIME_COMMENT_RE.match(ln)]
     return "\n".join(lines).strip()
@@ -71,13 +70,10 @@ def b64d(s):
     s = s.strip().replace("-", "+").replace("_", "/")
     s += "=" * (-len(s) % 4)
     return base64.b64decode(s)
-
 def _q(params, key, default=""):
     v = params.get(key)
     return v[0] if v else default
-
 def decode_node_lines(content):
-    """把 base64 或明文的订阅内容统一还原成节点 URI 列表"""
     content = content.strip()
     lines = [l.strip() for l in content.splitlines()
              if l.strip() and not l.strip().startswith(("//", "#"))]
@@ -92,16 +88,13 @@ def decode_node_lines(content):
     except Exception:
         pass
     return lines
-
 def parse_node(line, idx):
-    """把单条节点 URI 解析成 Clash(mihomo) 代理字典"""
     line = line.strip()
     if "://" not in line:
         return None
     scheme = line.split("://", 1)[0].lower()
     p = urlparse(line)
     name = unquote(p.fragment) if p.fragment else None
-
     if scheme == "vmess":
         body = line.split("://", 1)[1].split("#")[0]
         data = json.loads(b64d(body).decode("utf-8"))
@@ -137,7 +130,6 @@ def parse_node(line, idx):
                 opts["host"] = [data["host"]]
             proxy["h2-opts"] = opts
         return proxy
-
     if scheme == "ss":
         body = line.split("://", 1)[1].split("#")[0]
         if "@" in body:
@@ -164,7 +156,6 @@ def parse_node(line, idx):
             "password": password,
             "udp": True
         }
-
     if scheme == "ssr":
         dec = b64d(line.split("://", 1)[1]).decode("utf-8")
         main, _, qs = dec.partition("/?")
@@ -186,7 +177,6 @@ def parse_node(line, idx):
         if _q(params, "protoparam"):
             proxy["protocol-param"] = b64d(_q(params, "protoparam")).decode("utf-8")
         return proxy
-
     if scheme == "trojan":
         params = parse_qs(p.query)
         proxy = {
@@ -213,7 +203,6 @@ def parse_node(line, idx):
             proxy["network"] = "grpc"
             proxy["grpc-opts"] = {"grpc-service-name": _q(params, "serviceName", "")}
         return proxy
-
     if scheme == "vless":
         params = parse_qs(p.query)
         proxy = {
@@ -254,7 +243,6 @@ def parse_node(line, idx):
                 "grpc-service-name": _q(params, "serviceName", "") or _q(params, "path", "")
             }
         return proxy
-
     if scheme in ("hysteria2", "hy2"):
         params = parse_qs(p.query)
         proxy = {
@@ -276,7 +264,6 @@ def parse_node(line, idx):
             if _q(params, "obfs-password"):
                 proxy["obfs-password"] = _q(params, "obfs-password")
         return proxy
-
     if scheme == "tuic":
         params = parse_qs(p.query)
         proxy = {
@@ -293,12 +280,9 @@ def parse_node(line, idx):
             proxy["sni"] = sni
         if _q(params, "insecure") in ("1", "true"):
             proxy["skip-cert-verify"] = True
-        return proxy
-        
+        return proxy     
     return None
-
 def build_clash_yaml(node_lines):
-    """本地把节点列表转成 Clash YAML，彻底摆脱第三方转换 API"""
     proxies, used = [], set()
     for idx, line in enumerate(node_lines, 1):
         try:
@@ -364,7 +348,7 @@ def update_readme(raw_content):
         count = len([x for x in raw_content.splitlines() if x.strip()])
         display = f"已成功抓取 {count} 条节点"
     content = f"""# 🚀 BestSub 自动订阅更新
-自动抓取 yfamilys 最新订阅，转换：Clash / V2Ray。
+自动抓取 yfamilys 最新订阅。
 ---
 ## Clash订阅
 {bt}text
@@ -474,7 +458,6 @@ def fetch_links():
     response = request_retry(scraper, TARGET_URL, headers=DEFAULT_HEADERS, timeout=30)
     html_text = html.unescape(response.text)
     extracted = None
-
     node_pattern = (
         r"(?:vmess|vless|trojan|ss|ssr|"
         r"hysteria|hysteria2|hy2|tuic)"
@@ -500,10 +483,8 @@ def fetch_links():
                 if is_valid_sub_url(u):
                     extracted = u
                     break
-
     if not extracted:
         raise Exception("❌ 未在页面中查找到有效节点或动态链接")
-
     safe_write("links.txt", extracted)
 
     # -----------------------------
@@ -542,19 +523,14 @@ def fetch_links():
                     print("ℹ️ 直连内容不符合纯 V2Ray 节点格式，转用 API 转换")
         except Exception as e:
             print(f"⚠️ 直连拉取失败，尝试通过 API 转换: {e}")
-
         if not v2ray_content:
             v2ray_content = convert_sub(scraper, "v2ray", extracted)
-
         if not v2ray_content:
             raise Exception("❌ V2Ray 内容获取及转换均失败")
-
         v2ray_content = strip_time_comments(v2ray_content)
         if not v2ray_content:
             raise Exception("❌ V2Ray 内容清洗后为空")
-
         node_lines = decode_node_lines(v2ray_content)
-
         if not any(l.lower().startswith(NODE_SCHEMES) for l in node_lines):
             print("⚠️ 解码后无有效节点 URI，强制重新通过 API 转换...")
             v2ray_content = convert_sub(scraper, "v2ray", extracted)
@@ -569,14 +545,11 @@ def fetch_links():
         ]
         if not node_lines:
             node_lines = [l for l in extracted.splitlines() if l.strip()]
-
     if not node_lines:
         raise Exception("❌ 未提取到有效的 V2Ray 节点")
-
     pure_nodes = [l for l in node_lines if l.strip().lower().startswith(NODE_SCHEMES)]
     if not pure_nodes:
         raise Exception("❌ 过滤后无有效节点 URI，无法生成 V2Ray 订阅")
-
     raw_nodes_text = "\n".join(pure_nodes)
     b64_v2ray = base64.b64encode(raw_nodes_text.encode("utf-8")).decode("utf-8")
     safe_write("v2ray.txt", b64_v2ray)
@@ -589,19 +562,15 @@ def fetch_links():
     if not clash_content:
         print("⚠️ 在线转换 API 全部失效，启用本地 Clash 转换...")
         clash_content = build_clash_yaml(pure_nodes)
-
     if not clash_content:
         raise Exception("❌ Clash 配置转换失败")
-
     clash_content = strip_time_comments(clash_content)
     if not clash_content:
         raise Exception("❌ Clash 配置清洗后为空")
-
     safe_write("clash.yaml", clash_content)
     print("✅ clash.yaml 更新完成")
 
     update_readme(extracted)
     print("🎉 所有任务执行完成！")
-
 if __name__ == "__main__":
     fetch_links()
