@@ -2,7 +2,7 @@ name: Auto Scrape Data
 
 on:
   schedule:
-    - cron: '3-59/12 * * * *'   # 每 12 分钟（可按需调整）
+    - cron: '5,35 * * * *'     # 每小时的第 5 分和第 35 分
   workflow_dispatch:
 
 concurrency:
