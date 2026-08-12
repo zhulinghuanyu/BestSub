@@ -337,6 +337,61 @@ def build_clash_yaml(node_lines):
     return yaml.safe_dump(config, allow_unicode=True, sort_keys=False, default_flow_style=False)
 
 # ===============================
+# 简化 Clash YAML (去除臃肿的规则)
+# ===============================
+def simplify_clash_yaml(yaml_content):
+    try:
+        # 解析在线 API 返回的臃肿 YAML
+        config = yaml.safe_load(yaml_content)
+        if not config or not isinstance(config, dict):
+            return yaml_content
+            
+        proxies = config.get("proxies", [])
+        if not proxies:
+            return yaml_content
+            
+        # 提取所有节点名称
+        names = [p.get("name") for p in proxies if p.get("name")]
+        
+        # 重置策略组为最简模式 (与你本地生成的逻辑一致)
+        config["proxy-groups"] = [
+            {
+                "name": "🚀 节点选择",
+                "type": "select",
+                "proxies": ["♻️ 自动选择"] + names
+            },
+            {
+                "name": "♻️ 自动选择",
+                "type": "url-test",
+                "proxies": names,
+                "url": "http://www.gstatic.com/generate_204",
+                "interval": 300
+            },
+            {
+                "name": "🐟 漏网之鱼",
+                "type": "select",
+                "proxies": ["🚀 节点选择", "♻️ 自动选择"]
+            },
+        ]
+        
+        # 重置规则为最简模式
+        config["rules"] = [
+            "GEOIP,LAN,DIRECT",
+            "GEOIP,CN,DIRECT",
+            "MATCH,🐟 漏网之鱼"
+        ]
+        
+        # 移除可能导致文件臃肿的额外字段 (如 rule-providers, tun, script 等)
+        for key in ["rule-providers", "tun", "ebpf", "script", "ruleset", "proxy-provider"]:
+            config.pop(key, None)
+            
+        # 重新打包为干净的 YAML 字符串
+        return yaml.safe_dump(config, allow_unicode=True, sort_keys=False, default_flow_style=False)
+    except Exception as e:
+        print(f"⚠️ 简化 Clash YAML 失败: {e}")
+        return yaml_content
+
+# ===============================
 # README 更新
 # ===============================
 def update_readme(raw_content):
@@ -559,9 +614,14 @@ def fetch_links():
     # Clash 订阅更新逻辑（在线 API 优先，本地转换兜底）
     # -----------------------------
     clash_content = convert_sub(scraper, "clash", extracted)
-    if not clash_content:
+    
+    # 【新增】如果在线 API 成功返回了内容，先对其进行瘦身清洗
+    if clash_content:
+        clash_content = simplify_clash_yaml(clash_content)
+    else:
         print("⚠️ 在线转换 API 全部失效，启用本地 Clash 转换...")
         clash_content = build_clash_yaml(pure_nodes)
+        
     if not clash_content:
         raise Exception("❌ Clash 配置转换失败")
     clash_content = strip_time_comments(clash_content)
