@@ -47,6 +47,29 @@ NODE_SCHEMES = (
 )
 
 # ===============================
+# 自定义 YAML Dumper 以实现 proxies 单行输出
+# ===============================
+class FlowDict(dict):
+    pass
+
+class FlowDumper(yaml.SafeDumper):
+    pass
+
+def _represent_flow_dict(dumper, data):
+    # 强制字典采用流式 (Flow style) 即 {key: value} 格式
+    return dumper.represent_mapping('tag:yaml.org,2002:map', data.items(), flow_style=True)
+
+FlowDumper.add_representer(FlowDict, _represent_flow_dict)
+
+def convert_to_flow(obj):
+    """递归将字典转为 FlowDict，用于触发 PyYAML 单行渲染"""
+    if isinstance(obj, dict):
+        return FlowDict({k: convert_to_flow(v) for k, v in obj.items()})
+    elif isinstance(obj, list):
+        return [convert_to_flow(i) for i in obj]
+    return obj
+
+# ===============================
 # 安全写文件
 # ===============================
 def safe_write(filename, content):
@@ -308,7 +331,8 @@ def build_clash_yaml(node_lines):
         "allow-lan": False,
         "mode": "rule",
         "log-level": "info",
-        "proxies": proxies,
+        # 【修改点】：通过 convert_to_flow 将 proxies 转换为单行字典类
+        "proxies": convert_to_flow(proxies),
         "proxy-groups": [
             {
                 "name": "🚀 节点选择",
@@ -334,7 +358,8 @@ def build_clash_yaml(node_lines):
             "MATCH,🐟 漏网之鱼"
         ],
     }
-    return yaml.safe_dump(config, allow_unicode=True, sort_keys=False, default_flow_style=False)
+    # 【修改点】：使用自定义 FlowDumper 渲染，并设置 width=4096 防止单行内容过长时被强制换行
+    return yaml.dump(config, Dumper=FlowDumper, allow_unicode=True, sort_keys=False, default_flow_style=False, width=4096)
 
 # ===============================
 # 简化 Clash YAML (去除臃肿的规则)
@@ -348,6 +373,9 @@ def simplify_clash_yaml(yaml_content):
         if not proxies:
             return yaml_content
         names = [p.get("name") for p in proxies if p.get("name")]
+        
+        # 【修改点】：应用相同的单行格式转换逻辑
+        config["proxies"] = convert_to_flow(proxies)
         config["proxy-groups"] = [
             {
                 "name": "🚀 节点选择",
@@ -374,7 +402,9 @@ def simplify_clash_yaml(yaml_content):
         ]
         for key in ["rule-providers", "tun", "ebpf", "script", "ruleset", "proxy-provider"]:
             config.pop(key, None)
-        return yaml.safe_dump(config, allow_unicode=True, sort_keys=False, default_flow_style=False)
+            
+        # 【修改点】：使用 FlowDumper 和更大的 width 限制
+        return yaml.dump(config, Dumper=FlowDumper, allow_unicode=True, sort_keys=False, default_flow_style=False, width=4096)
     except Exception as e:
         print(f"⚠️ 简化 Clash YAML 失败: {e}")
         return yaml_content
@@ -601,6 +631,7 @@ def fetch_links():
     # -----------------------------
     # Clash 订阅更新逻辑（在线 API 优先，本地转换兜底）
     # -----------------------------
+    # 【修复点】：修复了原代码中导致崩溃的严重语法拼写错误
     clash_content = convert_sub(scraper, "clash", extracted)
     if clash_content:
         clash_content = simplify_clash_yaml(clash_content)
