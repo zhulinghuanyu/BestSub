@@ -4,32 +4,32 @@ allow-lan: false
 mode: rule
 log-level: info
 proxies:
-- {name: 香港 03, type: vmess, server: 101.36.117.224, port: 2310, uuid: 499399e2-dd09-44b6-af79-288686090aea, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: {path: /direct, headers: {Host: 101.36.117.224}}}
-- {name: 日本 09, type: vmess, server: 64.81.115.233, port: 10000, uuid: b831381d-6324-4d53-ad4f-8cda48b30811, alterId: 0, cipher: auto, udp: true, tls: true}
-- {name: 日本 10, type: vmess, server: 45.143.131.65, port: 2670, uuid: 2af03d4c-faa6-4898-9e60-d380ec6631a3, alterId: 0, cipher: auto, udp: true}
-- {name: 美国 02, type: vmess, server: 64.118.154.155, port: 21016, uuid: 8c34c55f-2fc2-4cd0-8454-193d88b053cb, alterId: 0, cipher: auto, udp: true}
-- {name: 美国 03, type: vmess, server: 64.83.12.153, port: 443, uuid: 9d476209-d8bd-9536-6e8d-61c97ec114db, alterId: 0, cipher: auto, udp: true}
-- {name: 美国 05, type: vmess, server: 104.225.235.222, port: 443, uuid: ac89c4c3-c17a-4961-a4ed-a06695a8bd88, alterId: 0, cipher: auto, udp: true, tls: true}
+- {name: 🇭🇰 香港 03, type: vmess, server: 101.36.117.224, port: 2310, uuid: 499399e2-dd09-44b6-af79-288686090aea, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: {path: /direct, headers: {Host: 101.36.117.224}}}
+- {name: 🇯🇵 日本 09, type: vmess, server: 64.81.115.233, port: 10000, uuid: b831381d-6324-4d53-ad4f-8cda48b30811, alterId: 0, cipher: auto, udp: true, tls: true}
+- {name: 🇯🇵 日本 10, type: vmess, server: 45.143.131.65, port: 2670, uuid: 2af03d4c-faa6-4898-9e60-d380ec6631a3, alterId: 0, cipher: auto, udp: true}
+- {name: 🇺🇸 美国 02, type: vmess, server: 64.118.154.155, port: 21016, uuid: 8c34c55f-2fc2-4cd0-8454-193d88b053cb, alterId: 0, cipher: auto, udp: true}
+- {name: 🇺🇸 美国 03, type: vmess, server: 64.83.12.153, port: 443, uuid: 9d476209-d8bd-9536-6e8d-61c97ec114db, alterId: 0, cipher: auto, udp: true}
+- {name: 🇺🇸 美国 05, type: vmess, server: 104.225.235.222, port: 443, uuid: ac89c4c3-c17a-4961-a4ed-a06695a8bd88, alterId: 0, cipher: auto, udp: true, tls: true}
 proxy-groups:
 - name: 🚀 节点选择
   type: select
   proxies:
   - ♻️ 自动选择
-  - 香港 03
-  - 日本 09
-  - 日本 10
-  - 美国 02
-  - 美国 03
-  - 美国 05
+  - 🇭🇰 香港 03
+  - 🇯🇵 日本 09
+  - 🇯🇵 日本 10
+  - 🇺🇸 美国 02
+  - 🇺🇸 美国 03
+  - 🇺🇸 美国 05
 - name: ♻️ 自动选择
   type: url-test
   proxies:
-  - 香港 03
-  - 日本 09
-  - 日本 10
-  - 美国 02
-  - 美国 03
-  - 美国 05
+  - 🇭🇰 香港 03
+  - 🇯🇵 日本 09
+  - 🇯🇵 日本 10
+  - 🇺🇸 美国 02
+  - 🇺🇸 美国 03
+  - 🇺🇸 美国 05
   url: http://www.gstatic.com/generate_204
   interval: 300
 - name: 🐟 漏网之鱼
